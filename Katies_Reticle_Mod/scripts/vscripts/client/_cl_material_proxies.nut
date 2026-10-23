@@ -603,7 +603,7 @@ function VMTCallback_FOVReticleOffset( ent )
 		((offsetValsVanilla[10] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[10] * reticleCenterFactor))
 	]
 
-	for ( local i = 0; i < 10; i++ )
+	for ( local i = 0; i < 11; i++ )
 	{
 		//offset = GraphCapped( fov, fovVals[i], fovVals[i + 1], offsetVals[i], offsetVals[i + 1] )
 
@@ -679,7 +679,7 @@ function FOVReticleOffsetKatie( ent, isX )
 					break
 
 				case "mp_weapon_lmg":
-					optic = "lmg"
+					optic = "spitfire"
 					break
 
 				case "mp_weapon_r97":
@@ -739,7 +739,7 @@ function FOVReticleOffsetKatie( ent, isX )
 		((offsetValsVanilla[10] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[10] * reticleCenterFactor))
 	]
 
-	for ( local i = 0; i < 10; i++ )
+	for ( local i = 0; i < 11; i++ )
 	{
 		//offset = GraphCapped( fov, fovVals[i], fovVals[i + 1], offsetVals[i], offsetVals[i + 1] )
 
@@ -796,7 +796,7 @@ function VMTCallback_ReticleScale( ent, attachment = "HOLO_REAR" )
 
 	local fovScale = GetConVarFloat( "cl_fovScale" )
 	local baseFov = fovScale * 70
-	local actualFov = glc().GetFOV()
+	local actualFov = player.GetFOV()
 
 	if ( !player )
 		{
@@ -835,7 +835,7 @@ function VMTCallback_ReticleScale( ent, attachment = "HOLO_REAR" )
 					break
 
 				case "mp_weapon_lmg":
-					optic = "autocvar_set_reticle_scale_lmg"
+					optic = "autocvar_set_reticle_scale_spitfire"
 					break
 
 				case "mp_weapon_r97":
