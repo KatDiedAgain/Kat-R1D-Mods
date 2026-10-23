@@ -796,7 +796,7 @@ function VMTCallback_ReticleScale( ent )
 
 	local fovScale = GetConVarFloat( "cl_fovScale" )
 	local baseFov = fovScale * 70
-	local actualFov = glc().GetFOV()
+	local actualFov = player.GetFOV()
 
 	if ( !player )
 		{
