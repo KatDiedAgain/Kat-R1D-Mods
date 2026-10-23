@@ -13,6 +13,16 @@ function main()
 
     AutoCVar( "set_reticle_offset_addend_x", "0,0,0,0,0,0,0,0,0", "Sets the xOffsetAddend value in the material proxies nut file.", "" )
     AutoCVar( "set_reticle_offset_addend_y", "0,0,0,0,0,0,0,0,0", "Sets the yOffsetAddend value in the material proxies nut file.", "" )
+
+    AutoCVar( "set_reticle_scale_irons_r101", "1.0", "Sets the scale of the reticle for: R-101 IRON SIGHTS", "" )
+    AutoCVar( "set_reticle_scale_irons_g2", "2.0", "Sets the scale of the reticle for: G2 IRON SIGHTS", "" )
+    AutoCVar( "set_reticle_scale_irons_hemlok", "2.0", "Sets the scale of the reticle for: Hemlok IRON SIGHTS", "" )
+    AutoCVar( "set_reticle_scale_irons_lmg", "1.0", "Sets the scale of the reticle for: Spitfire IRON SIGHTS", "" )
+    AutoCVar( "set_reticle_scale_irons_r97", "1.0", "Sets the scale of the reticle for: R-97 IRON SIGHTS", "" )
+    AutoCVar( "set_reticle_scale_irons_car", "1.0", "Sets the scale of the reticle for: CAR IRON SIGHTS", "" )
+    AutoCVar( "set_reticle_scale_hcog", "1.0", "Sets the scale of the reticle for: HCOG", "" )
+    AutoCVar( "set_reticle_scale_holo", "1.0", "Sets the scale of the reticle for: HOLOSIGHT", "" )
+    AutoCVar( "set_reticle_scale_aog", "1.0", "Sets the scale of the reticle for: AOG", "" )
 }
 
 main()

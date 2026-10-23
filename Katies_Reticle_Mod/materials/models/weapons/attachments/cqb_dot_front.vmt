@@ -33,7 +33,7 @@ UnlitTwoTexture
 	$TranslatescaleX "2.0"		//x scalar
 	$TranslatescaleY "2.0"		//y scalar
 	//$scaleScale "1.0"			// Scaling Scalar from Katie. Trying some shit out lmao. $holoScale doesn't have a $translateScale because it was taken by $holoOffset... what the hell, man? It's affected at the bottom of the script. Why two variables per thing..? Whatever.
-	$holoScale "[1.0 1.0]"		// Base scaling var [inverted!]
+	$holoScale "[1.0 1.0]"		// Base scaling var [inverted!]     1 1
 	$holoOffset "[0.0 0.0]"		// Base Offset var
 
 	$holoOffsetX ".0"			//dummy for print
@@ -50,7 +50,7 @@ UnlitTwoTexture
 	$offset_disable		"0"				//offset killswitch
 
 	"$scale_temp"	"1.2" 		//"1.2" //dummy for cvar scaling =$holoscale
-	"$scale_post"	"1.0" //.0		//temp var for cvar scaling
+	"$scale_post"	"1.0" //.0		//temp var for cvar scaling, 1
 
 
 	"Proxies"
@@ -118,12 +118,6 @@ UnlitTwoTexture
 //OFFSET/SCALE
 
 		// Function that controls $holoOffset scalar. 
-		//EntityScript
-		//{
-		//	scriptFuncName	"VMTCallback_FOVReticleOffset"
-		//	resultVar $translatescale
-		//}
-
 		// This one is for X. This was added with Katie's mod.
 		EntityScript
 		{
@@ -136,6 +130,13 @@ UnlitTwoTexture
 			scriptFuncName	"VMTCallback_FOVReticleOffsetY"
 			resultVar $translatescaley
 		}
+		// This is for scale. For real, this time.
+		EntityScript
+		{
+			scriptFuncName	"VMTCallback_ReticleScale"
+			resultVar $scale_post
+		}
+
 
 //Convar Based Scale manipulation
 //

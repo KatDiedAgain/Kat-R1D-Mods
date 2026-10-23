@@ -801,6 +801,78 @@ function IsBodyGroupSet( ent, bodygroup )
 I keep missing the beginning and end of this segment and it's making me feel like I can't see. It's like trying to see in a dream
 */
 
+// Time for scale!! Hope this works!
+
+function VMTCallback_ReticleScale( ent )
+{
+	local reticleScale = 1.0
+	local player = GetLocalViewPlayer()
+
+	if ( !player )
+		{
+		return 0
+		}
+
+	local optic = 0
+	local weapon = player.GetActiveWeapon()
+
+	if ( weapon )
+	{
+		if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
+		{
+		optic = 6
+		}
+		else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
+		{
+		optic = 7
+		}
+		else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
+		{
+		optic = 8
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_rspn101" )
+		{
+		optic = 0
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_g2" )
+		{
+		optic = 1
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_hemlok" )
+		{
+		optic = 2
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_lmg" )
+		{
+		optic = 3
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_r97" )
+		{
+		optic = 4
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_car" )
+		{
+		optic = 5
+		}
+	}
+
+	local scaleVals = [
+		GetConVarString( "autocvar_set_reticle_scale_irons_r101" ),
+		GetConVarString( "autocvar_set_reticle_scale_irons_g2" ),
+		GetConVarString( "autocvar_set_reticle_scale_irons_hemlok" ),
+		GetConVarString( "autocvar_set_reticle_scale_irons_lmg" ),
+		GetConVarString( "autocvar_set_reticle_scale_irons_r97" ),
+		GetConVarString( "autocvar_set_reticle_scale_irons_car" ),
+		GetConVarString( "autocvar_set_reticle_scale_hcog" ),
+		GetConVarString( "autocvar_set_reticle_scale_holo" ),
+		GetConVarString( "autocvar_set_reticle_scale_aog" )
+	]
+
+	reticleScale = scaleVals[optic]
+
+	return reticleScale
+}
+
 function VMTCallback_ColorBlindRed( ent )
 {
 	local col = GetColorBlindColors()
