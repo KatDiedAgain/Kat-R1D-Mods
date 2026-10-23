@@ -625,15 +625,15 @@ function VMTCallback_FOVReticleOffset( ent )
 
 function VMTCallback_FOVReticleOffsetX( ent )
 {
-	return FOVReticleOffsetKatie( ent, "autocvar_set_reticle_offset_multiplier_x", "autocvar_set_reticle_offset_addend_x" )
+	return FOVReticleOffsetKatie( ent, true )
 }
 
 function VMTCallback_FOVReticleOffsetY( ent )
 {
-	return FOVReticleOffsetKatie( ent, "autocvar_set_reticle_offset_multiplier_y", "autocvar_set_reticle_offset_addend_y" )
+	return FOVReticleOffsetKatie( ent, false )
 }
 
-function FOVReticleOffsetKatie( ent, multiplier, addend )
+function FOVReticleOffsetKatie( ent, isX )
 {
 	local player = GetLocalViewPlayer()
 
@@ -647,83 +647,63 @@ function FOVReticleOffsetKatie( ent, multiplier, addend )
 
 	// Default to the iron sights value
 	// Pistols dont use the iron_sights attachment so we cant rely on that
-	local optic = 0
-
+	local optic = "r101"
 	local weapon = player.GetActiveWeapon()
-
-/* THIS SEGMENT DOESNT WORK FOR BURN CARDS BC CARDS DONT GIVE YOU THE ACTUAL ATTACHMENT SO IT ISNT AFFECTED
-	if ( weapon )
-	{
-    if ( weapon.HasModDefined( "hcog" ) && weapon.HasMod( "hcog" ) )
-			{
-      optic = 0
-			}
-		else if ( weapon.HasModDefined( "holosight" ) && weapon.HasMod( "holosight" ) )
-			{
-      optic = 1
-			}
-		else if ( weapon.HasModDefined( "aog" ) && weapon.HasMod( "aog" ) )
-			{
-      optic = 2
-			}
-	}
-	*/
 
 	if ( weapon )
 	{
 		if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
 		{
-		optic = 6
+		optic = "hcog"
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
 		{
-		optic = 7
+		optic = "holo"
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
 		{
-		optic = 8
+		optic = "aog"
 		}
 		else
 		{
+			// Ideally we would check if the convar exists, and do "autocvar_set_reticle_scale_" + weapon.GetClassname().slice( 0, 9 )
+			// But we cant do that
 			switch( weapon.GetClassname() )
 			{
 				case "mp_weapon_g2":
-					optic = 1
+					optic = "g2"
 					break
 
 				case "mp_weapon_hemlok":
-					optic = 2
+					optic = "hemlok"
 					break
 
 				case "mp_weapon_lmg":
-					optic = 3
+					optic = "lmg"
 					break
 
 				case "mp_weapon_r97":
-					optic = 4
+					optic = "r97"
 					break
 
 				case "mp_weapon_car":
-					optic = 5
+					optic = "car"
 					break
-				
+
+				case "mp_weapon_wingman":
+					optic = "wingman"
+					break
+
 				case "mp_weapon_rspn101":
 				default:
-					optic = 0
+					optic = "r101"
 					break
 			}
 		}
 	}
 
-	local offsetMultiplier = multiplier
-	local offsetAddend = addend
-
-	if ( type( multiplier ) == "string" )
-		offsetMultiplier = split(GetConVarString( multiplier ),",")[optic].tofloat()
-
-	if ( type( addend ) == "string" )
-		offsetAddend = split(GetConVarString( addend ),",")[optic].tofloat()
-
+	local offsetMultiplier = GetConVarFloat( format( "autocvar_set_reticle_offset_multiplier_%s_%s", optic, isX ? "x" : "y" ) )
+	local offsetAddend = GetConVarFloat( format( "autocvar_set_reticle_offset_addend_%s_%s", optic, isX ? "x" : "y" ) )
 
 	local reticleCenterFactor = 1.0
 	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_offset_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
@@ -819,7 +799,7 @@ function VMTCallback_ReticleScale( ent )
 		return reticleScale
 		}
 
-	local optic = "autocvar_set_reticle_scale_irons_r101"
+	local optic = "autocvar_set_reticle_scale_r101"
 	local weapon = player.GetActiveWeapon()
 
 	if ( weapon )
@@ -838,35 +818,37 @@ function VMTCallback_ReticleScale( ent )
 		}
 		else
 		{
+			// Ideally we would check if the convar exists, and do "autocvar_set_reticle_scale_" + weapon.GetClassname().slice( 0, 9 )
+			// But we cant do that
 			switch( weapon.GetClassname() )
 			{
 				case "mp_weapon_g2":
-					optic = "autocvar_set_reticle_scale_irons_g2"
+					optic = "autocvar_set_reticle_scale_g2"
 					break
 
 				case "mp_weapon_hemlok":
-					optic = "autocvar_set_reticle_scale_irons_hemlok"
+					optic = "autocvar_set_reticle_scale_hemlok"
 					break
 
 				case "mp_weapon_lmg":
-					optic = "autocvar_set_reticle_scale_irons_lmg"
+					optic = "autocvar_set_reticle_scale_lmg"
 					break
 
 				case "mp_weapon_r97":
-					optic = "autocvar_set_reticle_scale_irons_r97"
+					optic = "autocvar_set_reticle_scale_r97"
 					break
 
 				case "mp_weapon_car":
-					optic = "autocvar_set_reticle_scale_irons_car"
+					optic = "autocvar_set_reticle_scale_car"
 					break
 
 				case "mp_weapon_wingman":
-					optic = "autocvar_set_reticle_scale_irons_wingman"
+					optic = "autocvar_set_reticle_scale_wingman"
 					break
 
 				case "mp_weapon_rspn101":
 				default:
-					optic = "autocvar_set_reticle_scale_irons_r101"
+					optic = "autocvar_set_reticle_scale_r101"
 					break
 			}
 		}
