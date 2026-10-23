@@ -673,15 +673,39 @@ function FOVReticleOffsetKatie( ent, multiplier, addend )
 	{
 		if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
 		{
-		optic = 1
+		optic = 6
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
 		{
-		optic = 2
+		optic = 7
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
 		{
+		optic = 8
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_rspn101" )
+		{
+		optic = 0
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_g2" )
+		{
+		optic = 1
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_hemlok" )
+		{
+		optic = 2
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_lmg" )
+		{
 		optic = 3
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_r97" )
+		{
+		optic = 4
+		}
+		else if ( weapon.GetClassname() == "mp_weapon_car" )
+		{
+		optic = 5
 		}
 	}
 

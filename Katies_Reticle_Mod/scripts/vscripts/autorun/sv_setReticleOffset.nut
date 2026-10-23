@@ -5,12 +5,14 @@ function main()
 
     // These return an array that contains each value for each of the three optics.
     // Format:
-    // [IRONSIGHTS,HCOG,HOLOSIGHT,AOG]
-    AutoCVar( "set_reticle_offset_multiplier_x", "1.0,0.98,0.92,1.03", "Sets the xOffsetMultiplier value in the material proxies nut file.", "" )
-    AutoCVar( "set_reticle_offset_multiplier_y", "1.0,1.25,0.92,1.03", "Sets the yOffsetMultiplier value in the material proxies nut file.", "" )
+    // [R101_IRONS,G2_IRONS,HEMLOK_IRONS,LMG_IRONS,R97_IRONS,CAR_IRONS,HCOG,HOLOSIGHT,AOG]
 
-    AutoCVar( "set_reticle_offset_addend_x", "0,0,0,0", "Sets the xOffsetAddend value in the material proxies nut file.", "" )
-    AutoCVar( "set_reticle_offset_addend_y", "0,0,0,0", "Sets the yOffsetAddend value in the material proxies nut file.", "" )
+    //                                            r1  g2a4 hmlk lmg   r97  car  hcog holo aog
+    AutoCVar( "set_reticle_offset_multiplier_x", "1.0,0.65,0.81,-0.28,0.78,0.36,0.98,0.92,1.03", "Sets the xOffsetMultiplier value in the material proxies nut file.", "" )
+    AutoCVar( "set_reticle_offset_multiplier_y", "1.0,0.65,0.81,-0.28,0.78,0.36,1.25,0.92,1.03", "Sets the yOffsetMultiplier value in the material proxies nut file.", "" )
+
+    AutoCVar( "set_reticle_offset_addend_x", "0,0,0,0,0,0,0,0,0", "Sets the xOffsetAddend value in the material proxies nut file.", "" )
+    AutoCVar( "set_reticle_offset_addend_y", "0,0,0,0,0,0,0,0,0", "Sets the yOffsetAddend value in the material proxies nut file.", "" )
 }
 
 main()
