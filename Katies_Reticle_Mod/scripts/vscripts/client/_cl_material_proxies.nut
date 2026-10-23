@@ -603,7 +603,7 @@ function VMTCallback_FOVReticleOffset( ent )
 		((offsetValsVanilla[10] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[10] * reticleCenterFactor))
 	]
 
-	for ( local i = 0; i < 10; i++ )
+	for ( local i = 0; i < 11; i++ )
 	{
 		//offset = GraphCapped( fov, fovVals[i], fovVals[i + 1], offsetVals[i], offsetVals[i + 1] )
 
@@ -739,7 +739,7 @@ function FOVReticleOffsetKatie( ent, isX )
 		((offsetValsVanilla[10] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[10] * reticleCenterFactor))
 	]
 
-	for ( local i = 0; i < 10; i++ )
+	for ( local i = 0; i < 11; i++ )
 	{
 		//offset = GraphCapped( fov, fovVals[i], fovVals[i + 1], offsetVals[i], offsetVals[i + 1] )
 
