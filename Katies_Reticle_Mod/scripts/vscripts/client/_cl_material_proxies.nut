@@ -679,7 +679,7 @@ function FOVReticleOffsetKatie( ent, isX )
 					break
 
 				case "mp_weapon_lmg":
-					optic = "lmg"
+					optic = "spitfire"
 					break
 
 				case "mp_weapon_r97":
@@ -835,7 +835,7 @@ function VMTCallback_ReticleScale( ent )
 					break
 
 				case "mp_weapon_lmg":
-					optic = "autocvar_set_reticle_scale_lmg"
+					optic = "autocvar_set_reticle_scale_spitfire"
 					break
 
 				case "mp_weapon_r97":
