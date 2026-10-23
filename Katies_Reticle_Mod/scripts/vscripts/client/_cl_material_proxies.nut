@@ -683,29 +683,35 @@ function FOVReticleOffsetKatie( ent, multiplier, addend )
 		{
 		optic = 8
 		}
-		else if ( weapon.GetClassname() == "mp_weapon_rspn101" )
+		else
 		{
-		optic = 0
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_g2" )
-		{
-		optic = 1
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_hemlok" )
-		{
-		optic = 2
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_lmg" )
-		{
-		optic = 3
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_r97" )
-		{
-		optic = 4
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_car" )
-		{
-		optic = 5
+			switch( weapon.GetClassname() )
+			{
+				case "mp_weapon_g2":
+					optic = 1
+					break
+
+				case "mp_weapon_hemlok":
+					optic = 2
+					break
+
+				case "mp_weapon_lmg":
+					optic = 3
+					break
+
+				case "mp_weapon_r97":
+					optic = 4
+					break
+
+				case "mp_weapon_car":
+					optic = 5
+					break
+				
+				case "mp_weapon_rspn101":
+				default:
+					optic = 0
+					break
+			}
 		}
 	}
 
@@ -810,66 +816,63 @@ function VMTCallback_ReticleScale( ent )
 
 	if ( !player )
 		{
-		return 0
+		return reticleScale
 		}
 
-	local optic = 0
+	local optic = "autocvar_set_reticle_scale_irons_r101"
 	local weapon = player.GetActiveWeapon()
 
 	if ( weapon )
 	{
 		if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
 		{
-		optic = 6
+		optic = "autocvar_set_reticle_scale_hcog"
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
 		{
-		optic = 7
+		optic = "autocvar_set_reticle_scale_holo"
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
 		{
-		optic = 8
+		optic = "autocvar_set_reticle_scale_aog"
 		}
-		else if ( weapon.GetClassname() == "mp_weapon_rspn101" )
+		else
 		{
-		optic = 0
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_g2" )
-		{
-		optic = 1
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_hemlok" )
-		{
-		optic = 2
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_lmg" )
-		{
-		optic = 3
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_r97" )
-		{
-		optic = 4
-		}
-		else if ( weapon.GetClassname() == "mp_weapon_car" )
-		{
-		optic = 5
+			switch( weapon.GetClassname() )
+			{
+				case "mp_weapon_g2":
+					optic = "autocvar_set_reticle_scale_irons_g2"
+					break
+
+				case "mp_weapon_hemlok":
+					optic = "autocvar_set_reticle_scale_irons_hemlok"
+					break
+
+				case "mp_weapon_lmg":
+					optic = "autocvar_set_reticle_scale_irons_lmg"
+					break
+
+				case "mp_weapon_r97":
+					optic = "autocvar_set_reticle_scale_irons_r97"
+					break
+
+				case "mp_weapon_car":
+					optic = "autocvar_set_reticle_scale_irons_car"
+					break
+
+				case "mp_weapon_wingman":
+					optic = "autocvar_set_reticle_scale_irons_wingman"
+					break
+
+				case "mp_weapon_rspn101":
+				default:
+					optic = "autocvar_set_reticle_scale_irons_r101"
+					break
+			}
 		}
 	}
 
-	local scaleVals = [
-		GetConVarString( "autocvar_set_reticle_scale_irons_r101" ),
-		GetConVarString( "autocvar_set_reticle_scale_irons_g2" ),
-		GetConVarString( "autocvar_set_reticle_scale_irons_hemlok" ),
-		GetConVarString( "autocvar_set_reticle_scale_irons_lmg" ),
-		GetConVarString( "autocvar_set_reticle_scale_irons_r97" ),
-		GetConVarString( "autocvar_set_reticle_scale_irons_car" ),
-		GetConVarString( "autocvar_set_reticle_scale_hcog" ),
-		GetConVarString( "autocvar_set_reticle_scale_holo" ),
-		GetConVarString( "autocvar_set_reticle_scale_aog" )
-	]
-
-	reticleScale = scaleVals[optic]
-
+	reticleScale = GetConVarFloat( optic )
 	return reticleScale
 }
 
