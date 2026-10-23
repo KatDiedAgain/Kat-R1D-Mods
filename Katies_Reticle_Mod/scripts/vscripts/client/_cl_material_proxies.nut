@@ -858,9 +858,19 @@ function VMTCallback_ReticleScale( ent )
 		}
 	}
 
-	reticleScale = (GetConVarFloat( optic ) * ( baseFov / actualFov ))
+	local opticZoomFovScaled = GetWeaponInfoFileKeyField_WithMods_Global( weapon.GetClassname(), weapon.GetMods(), "zoom_fov" ) * fovScale
+
+	reticleScale = ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov )
 	return reticleScale
 }
+
+
+
+
+// END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE
+
+
+
 
 function VMTCallback_ColorBlindRed( ent )
 {
