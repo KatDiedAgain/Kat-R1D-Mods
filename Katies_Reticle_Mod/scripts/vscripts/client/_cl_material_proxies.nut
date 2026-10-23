@@ -794,6 +794,10 @@ function VMTCallback_ReticleScale( ent )
 	local reticleScale = 1.0
 	local player = GetLocalViewPlayer()
 
+	local fovScale = GetConVarFloat( "cl_fovScale" )
+	local baseFov = fovScale * 70
+	local actualFov = glc().GetFOV()
+
 	if ( !player )
 		{
 		return reticleScale
@@ -854,7 +858,7 @@ function VMTCallback_ReticleScale( ent )
 		}
 	}
 
-	reticleScale = GetConVarFloat( optic )
+	reticleScale = (GetConVarFloat( optic ) * ( baseFov / actualFov ))
 	return reticleScale
 }
 

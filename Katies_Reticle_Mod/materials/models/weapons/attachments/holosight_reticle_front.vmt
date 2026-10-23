@@ -84,13 +84,14 @@ UnlitTwoTexture
 
 //OFFSET/SCALE
 
-		// Function that controls $holoOffset scalar. 
-		//EntityScript
-		//{
-		//	scriptFuncName	"VMTCallback_FOVReticleOffset"
-		//	resultVar $translatescale
-		//}
+		// Scale consistency
+		EntityScript
+		{
+			scriptFuncName	"VMTCallback_ReticleScale"
+			resultVar $scale_post
+		}
 
+		// Function that controls $holoOffset scalar.
 		// This one is for X. This was added with Katie's mod.
 		EntityScript
 		{
@@ -161,7 +162,7 @@ UnlitTwoTexture
 			srcVar1			$holoOffsetX
 			resultVar		$holoOffsetX_temp
 		}
-		Equals 
+		Equals
 		{
 			srcVar1			$holoOffsetY
 			resultVar		$holoOffsetY_temp

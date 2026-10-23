@@ -103,7 +103,13 @@ UnlitTwoTexture
 
 //OFFSET/SCALE
 
-		// Function that controls $holoOffset scalar. 
+		// Scale consistency
+		EntityScript
+		{
+			scriptFuncName	"VMTCallback_ReticleScale"
+			resultVar $scale_post
+		}
+		// Function that controls $holoOffset scalar.
 		// This one is for X. This was added with Katie's mod.
 		EntityScript
 		{
@@ -116,12 +122,6 @@ UnlitTwoTexture
 			scriptFuncName	"VMTCallback_FOVReticleOffsetY"
 			resultVar $translatescaley
 		}
-		// Scale for retaining size on screen no matter what.
-		//EntityScript
-		//{
-		//	scriptFuncName	"VMTCallback_FOVReticleScale"
-		//	resultVar $scalescale // Lol this sucks ass
-		//}
 
 //Convar Based Scale manipulation
 //
@@ -149,14 +149,14 @@ UnlitTwoTexture
 		"HoloSightOffset"
 		{
 			attachmentName		"HCOG_REAR"
-			horizontalScalar	".46651707648"	//".4212" 
-			verticalScalar		"-.46651707648"	//"-.4212" 
+			horizontalScalar	".46651707648"	//".4212"
+			verticalScalar		"-.46651707648"	//"-.4212"
 			resultVar			$holoOffset
 		}
 
 //Convar Based position manipulation
 //
-		
+
 		// Print $holooffset value for later use
 		Clamp	//X axis
 		{
@@ -165,7 +165,7 @@ UnlitTwoTexture
 			max			"$holoOffset[0]"
 			resultVar	$holoOffsetX
 		}
-		
+
 		Clamp	//Y axis
 		{
 			srcVar1		$valuezero
@@ -179,7 +179,7 @@ UnlitTwoTexture
 			srcVar1			$holoOffsetX
 			resultVar		$holoOffsetX_temp
 		}
-		Equals 
+		Equals
 		{
 			srcVar1			$holoOffsetY
 			resultVar		$holoOffsetY_temp
