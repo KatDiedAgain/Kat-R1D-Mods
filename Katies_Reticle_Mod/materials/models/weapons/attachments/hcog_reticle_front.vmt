@@ -148,7 +148,7 @@ UnlitTwoTexture
 
 		"HoloSightOffset"
 		{
-			attachmentName		"HCOG_REAR"
+			attachmentName		"HCOG_FRONT"
 			horizontalScalar	".46651707648"	//".4212"
 			verticalScalar		"-.46651707648"	//"-.4212"
 			resultVar			$holoOffset

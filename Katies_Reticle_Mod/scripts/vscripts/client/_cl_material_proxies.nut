@@ -789,7 +789,7 @@ I keep missing the beginning and end of this segment and it's making me feel lik
 
 // Time for scale!! Hope this works!
 
-function VMTCallback_ReticleScale( ent, attachment = "HOLO_REAR" )
+function VMTCallback_ReticleScale( ent )
 {
 	local reticleScale = 1.0
 	local player = GetLocalViewPlayer()
@@ -860,6 +860,8 @@ function VMTCallback_ReticleScale( ent, attachment = "HOLO_REAR" )
 
 	local opticZoomFovScaled = GetWeaponInfoFileKeyField_WithMods_Global( weapon.GetClassname(), weapon.GetMods(), "zoom_fov" ) * fovScale
 
+	local attachment = GetHoloOffsetAttachment( weapon )
+
 	local holoRearOrg = ent.GetAttachmentOrigin( ent.LookupAttachment( attachment ) )
 	local camOrg = GetLocalViewPlayer().CameraPosition()
 
@@ -870,7 +872,25 @@ function VMTCallback_ReticleScale( ent, attachment = "HOLO_REAR" )
 	return reticleScale
 }
 
+function GetHoloOffsetAttachment( weapon )
+{
+	local attachment = "IRON_SIGHT"
 
+	if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
+	{
+		attachment = "HCOG_FRONT"
+	}
+	else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
+	{
+		attachment = "HOLO_FRONT"
+	}
+	else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
+	{
+		attachment = "AOG_FRONT"
+	}
+
+	return attachment
+}
 
 
 // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE
