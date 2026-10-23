@@ -2,6 +2,7 @@ function main()
 {
 	AutoCVar( "set_reticle_offset", "1.55,1.41,1.31,1.21,1.13,1.02,0.95,0.855,0.795,0.75,0.65", "Sets the offsetValsCentered value in the material proxies nut file.", "" ) //1.5 for first value obv
 	AutoCVar( "set_reticle_offset_factor", "1.0", "Sets the reticleCenterFactor value in the material proxies nut file.", "" )
+	AutoCVar( "set_default_attachment_dist", "1.0", "Affects the attachmentDistance value in the material proxies nut file.", "" )
 
 	// These return an array that contains each value for each of the three optics.
 	// Format:
@@ -20,7 +21,7 @@ function main()
 		AutoCVar( "set_reticle_offset_addend_" + weaponNames[i] + "_y", "0", "Sets the yOffsetAddend value in the material proxies nut file.", "" )
 
 		local defaultScale = ( weaponNames[i] == "g2" || weaponNames[i] == "hemlok" ) ? "2.0" : "1.0"
-		AutoCVar( "set_reticle_scale_" + weaponNames[i], defaultScale, "Sets the scale of the reticle.", "" ) 
+		AutoCVar( "set_reticle_scale_" + weaponNames[i], defaultScale, "Sets the scale of the reticle.", "" )
 	}
 }
 

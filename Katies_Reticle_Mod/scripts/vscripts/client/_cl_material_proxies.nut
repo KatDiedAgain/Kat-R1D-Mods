@@ -789,7 +789,7 @@ I keep missing the beginning and end of this segment and it's making me feel lik
 
 // Time for scale!! Hope this works!
 
-function VMTCallback_ReticleScale( ent )
+function VMTCallback_ReticleScale( ent, attachment = "HOLO_REAR" )
 {
 	local reticleScale = 1.0
 	local player = GetLocalViewPlayer()
@@ -860,7 +860,13 @@ function VMTCallback_ReticleScale( ent )
 
 	local opticZoomFovScaled = GetWeaponInfoFileKeyField_WithMods_Global( weapon.GetClassname(), weapon.GetMods(), "zoom_fov" ) * fovScale
 
-	reticleScale = ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov )
+	local holoRearOrg = ent.GetAttachmentOrigin( ent.LookupAttachment( attachment ) )
+	local camOrg = GetLocalViewPlayer().CameraPosition()
+
+	local camHoloVec = camOrg - holoRearOrg
+	local attachmentDistance = camHoloVec.Length()
+
+	reticleScale = ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov ) * (1 / ( attachmentDistance ) * GetConVarFloat( "autocvar_set_default_attachment_dist" ) )
 	return reticleScale
 }
 
