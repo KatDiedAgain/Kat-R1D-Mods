@@ -647,7 +647,7 @@ function FOVReticleOffsetKatie( ent, isX )
 
 	// Default to the iron sights value
 	// Pistols dont use the iron_sights attachment so we cant rely on that
-	local optic = "r101"
+	local optic = ""
 	local weapon = player.GetActiveWeapon()
 
 	if ( weapon )
@@ -666,44 +666,20 @@ function FOVReticleOffsetKatie( ent, isX )
 		}
 		else
 		{
-			// Ideally we would check if the convar exists, and do "autocvar_set_reticle_scale_" + weapon.GetClassname().slice( 0, 9 )
-			// But we cant do that
-			switch( weapon.GetClassname() )
-			{
-				case "mp_weapon_g2":
-					optic = "g2"
-					break
-
-				case "mp_weapon_hemlok":
-					optic = "hemlok"
-					break
-
-				case "mp_weapon_lmg":
-					optic = "spitfire"
-					break
-
-				case "mp_weapon_r97":
-					optic = "r97"
-					break
-
-				case "mp_weapon_car":
-					optic = "car"
-					break
-
-				case "mp_weapon_wingman":
-					optic = "wingman"
-					break
-
-				case "mp_weapon_rspn101":
-				default:
-					optic = "r101"
-					break
-			}
+			// Remove mp_weapon_ from the classname
+			optic = weapon.GetClassname().slice( 10, weapon.GetClassname().len() )
 		}
 	}
 
-	local offsetMultiplier = GetConVarFloat( format( "autocvar_set_reticle_offset_multiplier_%s_%s", optic, isX ? "x" : "y" ) )
-	local offsetAddend = GetConVarFloat( format( "autocvar_set_reticle_offset_addend_%s_%s", optic, isX ? "x" : "y" ) )
+	local offsetMultiplier = 1.0
+	local offsetAddend = 0.0
+
+	local convarName = format( "autocvar_set_reticle_offset_multiplier_%s_%s", optic, isX ? "x" : "y" )
+	if ( ConVarExists( convarName ) )
+	{
+		offsetMultiplier = GetConVarFloat( convarName )
+		offsetAddend = GetConVarFloat( format( "autocvar_set_reticle_offset_addend_%s_%s", optic, isX ? "x" : "y" ) )
+	}
 
 	local reticleCenterFactor = 1.0
 	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_offset_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
@@ -822,39 +798,10 @@ function VMTCallback_ReticleScale( ent )
 		}
 		else
 		{
-			// Ideally we would check if the convar exists, and do "autocvar_set_reticle_scale_" + weapon.GetClassname().slice( 0, 9 )
-			// But we cant do that
-			switch( weapon.GetClassname() )
-			{
-				case "mp_weapon_g2":
-					optic = "autocvar_set_reticle_scale_g2"
-					break
-
-				case "mp_weapon_hemlok":
-					optic = "autocvar_set_reticle_scale_hemlok"
-					break
-
-				case "mp_weapon_lmg":
-					optic = "autocvar_set_reticle_scale_spitfire"
-					break
-
-				case "mp_weapon_r97":
-					optic = "autocvar_set_reticle_scale_r97"
-					break
-
-				case "mp_weapon_car":
-					optic = "autocvar_set_reticle_scale_car"
-					break
-
-				case "mp_weapon_wingman":
-					optic = "autocvar_set_reticle_scale_wingman"
-					break
-
-				case "mp_weapon_rspn101":
-				default:
-					optic = "autocvar_set_reticle_scale_r101"
-					break
-			}
+			// Remove mp_weapon_ from the classname
+			local convarName = "autocvar_set_reticle_scale_" + weapon.GetClassname().slice( 10, weapon.GetClassname().len() )
+			if ( ConVarExists( convarName ) )
+				optic = convarName
 		}
 	}
 
