@@ -9,8 +9,8 @@ function main()
 	// [R101_IRONS,G2_IRONS,HEMLOK_IRONS,LMG_IRONS,R97_IRONS,CAR_IRONS,HCOG,HOLOSIGHT,AOG]
 
 	local weaponNames = [ "r101", "g2", "hemlok", "spitfire", "r97", "car", "wingman", "hcog", "holo", "aog" ]
-	local defaultOffsetsX = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "1.0", "0.98", "0.92", "1.03" ]
-	local defaultOffsetsY = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "1.0", "1.25", "0.92", "1.03" ]
+	local defaultOffsetsX = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "0.98", "0.92", "1.03" ]
+	local defaultOffsetsY = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "1.25", "0.92", "1.03" ]
 
 	for ( local i = 0; i < weaponNames.len(); i++ )
 	{
