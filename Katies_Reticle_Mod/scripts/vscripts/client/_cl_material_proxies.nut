@@ -860,7 +860,8 @@ function VMTCallback_ReticleScale( ent )
 
 	local opticZoomFovScaled = GetWeaponInfoFileKeyField_WithMods_Global( weapon.GetClassname(), weapon.GetMods(), "zoom_fov" ) * fovScale
 
-	local attachment = GetHoloOffsetAttachment( weapon )
+	//local attachment = GetHoloOffsetAttachment( weapon )
+	local attachment = "HOLO_REAR"
 
 	local holoRearOrg = ent.GetAttachmentOrigin( ent.LookupAttachment( attachment ) )
 	local camOrg = GetLocalViewPlayer().CameraPosition()
@@ -872,10 +873,10 @@ function VMTCallback_ReticleScale( ent )
 	return reticleScale
 }
 
+/*
 function GetHoloOffsetAttachment( weapon )
 {
 	local attachment = "IRON_SIGHT"
-
 	if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
 	{
 		attachment = "HCOG_FRONT"
@@ -891,7 +892,7 @@ function GetHoloOffsetAttachment( weapon )
 
 	return attachment
 }
-
+*/
 
 // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE
 
