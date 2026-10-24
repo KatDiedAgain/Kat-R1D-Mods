@@ -8,27 +8,17 @@ function main()
 	local defaultOffsetsX = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "0.98", "0.92", "1.03" ]
 	local defaultOffsetsY = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "1.25", "0.92", "1.03" ]
 
-	local smallDefaultReticles = [ "g2", "hemlok", "wingman" ]
-	local mediumDefaultReticles = [ "r97" ]
+	local defaultScales = [ "1.0", "2.0", "2.0", "1.0", "1.0", "1.0", "2.0", "1.0", "1.0", "1.0" ]
 
 	for ( local i = 0; i < weaponNames.len(); i++ )
 	{
 		AutoCVar( "set_reticle_offset_multiplier_" + weaponNames[i] + "_x", defaultOffsetsX[i], "Sets the xOffsetMultiplier value in the material proxies nut file.", "" )
 		AutoCVar( "set_reticle_offset_multiplier_" + weaponNames[i] + "_y", defaultOffsetsY[i], "Sets the yOffsetMultiplier value in the material proxies nut file.", "" )
 
-		local defaultScale = "1.0"
-		foreach( name in smallDefaultReticles )
-		{
-			if ( name == weaponNames[i] )
-				defaultScale = "2.0"
-		}
-		foreach( name in mediumDefaultReticles )
-		{
-			if ( name == weaponNames[i] )
-				defaultScale = "1.5"
-		}
+		AutoCVar( "set_reticle_offset_addend_" + weaponNames[i] + "_x", "0", "Sets the xOffsetAddend value in the material proxies nut file.", "" )
+		AutoCVar( "set_reticle_offset_addend_" + weaponNames[i] + "_y", "0", "Sets the yOffsetAddend value in the material proxies nut file.", "" )
 
-		AutoCVar( "set_reticle_scale_" + weaponNames[i], defaultScale, "Sets the scale of the reticle.", "" )
+		AutoCVar( "set_reticle_scale_" + weaponNames[i], defaultScales[i], "Sets the scale of the reticle.", "" )
 	}
 }
 

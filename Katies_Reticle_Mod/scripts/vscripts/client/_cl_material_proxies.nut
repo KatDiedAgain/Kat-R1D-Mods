@@ -733,15 +733,6 @@ function FOVReticleOffsetKatie( ent, isX )
 	return (offset * offsetMultiplier)
 }
 
-function IsBodyGroupSet( ent, bodygroup )
-{
-	local index = ent.FindBodyGroup( bodygroup )
-	if ( index == -1 )
-		return false
-
-	return ent.GetBodyGroupState( index ) == 1
-}
-
 /*
 ******************************************************************************************************************************************************************************************
 ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET ///// END OFFSET
@@ -805,8 +796,8 @@ function VMTCallback_ReticleScale( ent )
 
 	local opticZoomFovScaled = GetWeaponInfoFileKeyField_WithMods_Global( weapon.GetClassname(), weapon.GetMods(), "zoom_fov" ) * fovScale
 
-	//local attachment = GetHoloOffsetAttachment( weapon )
-	local attachment = "HOLO_REAR"
+	local attachment = GetHoloOffsetAttachment( weapon )
+	//local attachment = "HOLO_REAR"
 
 	local holoRearOrg = ent.GetAttachmentOrigin( ent.LookupAttachment( attachment ) )
 	local camOrg = GetLocalViewPlayer().CameraPosition()
@@ -818,7 +809,24 @@ function VMTCallback_ReticleScale( ent )
 	return reticleScale
 }
 
-/*
+// END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE
+
+function VMTCallback_HasSightEquipped( ent )
+{
+	local player = GetLocalViewPlayer()
+	if ( !player )
+		return 0.0
+
+	local weapon = player.GetActiveWeapon()
+	if ( !weapon )
+		return 0.0
+
+	if ( IsBodyGroupSet( weapon, "sight_hcog" ) || IsBodyGroupSet( weapon, "sight_holo" ) || IsBodyGroupSet( weapon, "sight_aog04" ) )
+		return 0.0
+
+	return player.GetAdsFraction()
+}
+
 function GetHoloOffsetAttachment( weapon )
 {
 	local attachment = "IRON_SIGHT"
@@ -837,11 +845,15 @@ function GetHoloOffsetAttachment( weapon )
 
 	return attachment
 }
-*/
 
-// END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE
+function IsBodyGroupSet( ent, bodygroup )
+{
+	local index = ent.FindBodyGroup( bodygroup )
+	if ( index == -1 )
+		return false
 
-
+	return ent.GetBodyGroupState( index ) == 1
+}
 
 
 function VMTCallback_ColorBlindRed( ent )
