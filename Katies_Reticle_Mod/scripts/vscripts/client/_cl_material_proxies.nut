@@ -672,13 +672,11 @@ function FOVReticleOffsetKatie( ent, isX )
 	}
 
 	local offsetMultiplier = 1.0
-	local offsetAddend = 0.0
 
 	local convarName = format( "autocvar_set_reticle_offset_multiplier_%s_%s", optic, isX ? "x" : "y" )
 	if ( ConVarExists( convarName ) )
 	{
 		offsetMultiplier = GetConVarFloat( convarName )
-		offsetAddend = GetConVarFloat( format( "autocvar_set_reticle_offset_addend_%s_%s", optic, isX ? "x" : "y" ) )
 	}
 
 	local reticleCenterFactor = 1.0
@@ -732,7 +730,7 @@ function FOVReticleOffsetKatie( ent, isX )
 		}
 	}
 
-	return (offset * offsetMultiplier) + offsetAddend
+	return (offset * offsetMultiplier)
 }
 
 function IsBodyGroupSet( ent, bodygroup )
