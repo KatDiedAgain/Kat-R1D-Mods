@@ -8,7 +8,8 @@ function main()
 	local defaultOffsetsX = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "0.98", "0.92", "1.03" ]
 	local defaultOffsetsY = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "1.25", "0.92", "1.03" ]
 
-	local smallDefaultReticles = [ "g2", "hemlok", "r97", "wingman" ]
+	local smallDefaultReticles = [ "g2", "hemlok", "wingman" ]
+	local mediumDefaultReticles = [ "r97" ]
 
 	for ( local i = 0; i < weaponNames.len(); i++ )
 	{
@@ -20,6 +21,11 @@ function main()
 		{
 			if ( name == weaponNames[i] )
 				defaultScale = "2.0"
+		}
+		foreach( name in mediumDefaultReticles )
+		{
+			if ( name == weaponNames[i] )
+				defaultScale = "1.5"
 		}
 
 		AutoCVar( "set_reticle_scale_" + weaponNames[i], defaultScale, "Sets the scale of the reticle.", "" )
