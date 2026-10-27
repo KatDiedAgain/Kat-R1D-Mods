@@ -1,7 +1,7 @@
 "AddonInfo"
 {
 	"addontitle"			"Katies_Reticle_Mod"
-	"addonDescription"		"Re-enables vanilla reticle offset, allows the player to choose a setting for reticle offset, perfectly centers all reticles when the setting is set to 1, expands weapon sway Y axis values for rifles to match X axis, constricts weapon sway values for pistols to improve accuracy, and fixes the Holosight reticle (the dot is smaller)."
+	"addonDescription"		"Re-enables vanilla reticle offset, allows the player to choose a setting for reticle offset, perfectly centers all reticles when the setting is set to 1, compensates for perspective to simulate collimation, allows the player to change the scale for each individual reticle in the game, expands weapon sway Y axis values for rifles to match X axis, constricts weapon sway values for pistols to improve accuracy, and fixes the Holosight reticle (the dot is smaller)."
 	"addonversion"			"1"
 	"addonauthor"			"KatDiedAgain"
 
