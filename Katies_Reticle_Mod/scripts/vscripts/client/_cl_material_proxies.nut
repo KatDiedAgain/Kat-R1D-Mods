@@ -805,7 +805,15 @@ function VMTCallback_ReticleScale( ent )
 	local camHoloVec = camOrg - holoRearOrg
 	local attachmentDistance = camHoloVec.Length()
 
-	reticleScale = ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov ) * (1 / ( attachmentDistance ) * GetConVarFloat( "autocvar_set_default_attachment_dist" ) )
+	if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 )
+	{
+		reticleScale = GetConVarFloat( optic )
+	}
+	else
+	{
+		reticleScale = ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov ) * (1 / ( attachmentDistance ) * GetConVarFloat( "autocvar_set_default_attachment_dist" ) )
+	}
+
 	return reticleScale
 }
 
