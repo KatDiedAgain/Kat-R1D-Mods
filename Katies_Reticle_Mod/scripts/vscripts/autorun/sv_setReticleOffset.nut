@@ -4,7 +4,7 @@ function main()
 	AutoCVar( "set_reticle_offset_factor", "1.0", "Sets the reticleCenterFactor value in the material proxies nut file.", "" )
 	AutoCVar( "set_default_attachment_dist", "10.0", "Affects the attachmentDistance value in the material proxies nut file.", "" )
 
-	local weaponNames = [ "r101", "g2", "hemlok", "spitfire", "r97", "car", "wingman", "hcog", "holo", "aog" ]
+	local weaponNames = [ "r101", "g2", "hemlok", "lmg", "r97", "car", "wingman", "hcog", "holo", "aog" ]
 	local defaultOffsetsX = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "0.98", "0.92", "1.03" ]
 	local defaultOffsetsY = [ "1.0", "0.65", "0.81", "-0.28", "0.78", "0.36", "-0.25", "1.25", "0.92", "1.03" ]
 
