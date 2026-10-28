@@ -128,7 +128,7 @@ Found a bug? Oh, shit. That's important. Come yell at me. You can contact me on 
 
 Now, here's a comprehensive list of modifications this addon makes to R1Delta (for the nerds):
 
-1. Adjusts Nacho's offset values in the material proxies file to be as close as humanly possible to perfect center.
+1. Adjusts Nacho's offset values in the material proxies file to be as close as humanly possible to perfect center, at all FOVs between scale 1.0 and 1.6.
 
 2. Modifies HCOG front, Holo front, AOG red reticle, and CQB dot material files to utilize axis-based scripts for driving holoOffset
    in order to counterweigh the mesh scaling issues that keep holoOffset from being consistent across all materials.
