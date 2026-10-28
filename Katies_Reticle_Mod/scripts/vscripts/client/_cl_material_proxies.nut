@@ -565,13 +565,11 @@ const FOV_120 = 1.7
 
 // use VMTCallback_FOVReticleOffsetKatie instead
 // Lol special thanks to Nacho for helping me out! Without her, this would have taken a LOT fuckin longer.
+/*
 function VMTCallback_FOVReticleOffset( ent )
 {
 	local fov = GetConVarFloat( "cl_fovScale" )
 	local offset = 1.0
-
-	local reticleCenterFactor = 1.0
-	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_center_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
 
 	local fovVals = [ FOV_70, FOV_76, FOV_80, FOV_86, FOV_90, FOV_96, FOV_100, FOV_106, FOV_110, FOV_115, FOV_120 ]
 	local offsetValsVanilla = [ 1.0, 1.0825, 1.375, 1.22, 1.275, 1.375, 1.4125, 1.495, 1.55, 1.6, 1.7 ]
@@ -623,6 +621,7 @@ function VMTCallback_FOVReticleOffset( ent )
 
 	return offset
 }
+*/
 
 function VMTCallback_FOVReticleOffsetX( ent )
 {
@@ -679,9 +678,6 @@ function FOVReticleOffsetKatie( ent, isX )
 	{
 		axialOffsetMultiplier = GetConVarFloat( convarName )
 	}
-
-	local reticleCenterFactor = 1.0
-	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_center_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
 
 	local fovVals = [ FOV_70, FOV_76, FOV_80, FOV_86, FOV_90, FOV_96, FOV_100, FOV_106, FOV_110, FOV_115, FOV_120 ]
 
@@ -851,6 +847,64 @@ function VMTCallback_ReticleScale( ent )
 }
 
 // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE // END SCALE
+
+function VMTCallback_ReticleZeroX( ent )
+{
+	printt( "penis1" )
+	return CalculateAxialZero( ent, "x" )
+}
+
+function VMTCallback_ReticleZeroY( ent )
+{
+	printt( "penis2" )
+	return CalculateAxialZero( ent, "y" )
+}
+
+function CalculateAxialZero( ent, axisString )
+{
+	local zeroing = 0
+
+	local player = GetLocalViewPlayer()
+
+	if ( !player )
+		{
+		return zeroing
+		}
+
+	local axisvar = "autocvar_set_reticle_zero_r101_" + axisString
+	local weapon = player.GetActiveWeapon()
+
+	if ( weapon )
+	{
+		if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
+		{
+		axisvar = "autocvar_set_reticle_zero_hcog_" + axisString
+		}
+		else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
+		{
+		axisvar = "autocvar_set_reticle_zero_holo_" + axisString
+		}
+		else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
+		{
+		axisvar = "autocvar_set_reticle_zero_aog_" + axisString
+		}
+		else
+		{
+			// Remove mp_weapon_ from the classname
+			local convarName = "autocvar_set_reticle_zero_" + weapon.GetClassname().slice( 10, weapon.GetClassname().len() ) + "_" + axisString
+			if ( ConVarExists( convarName ) )
+				axisvar = convarName
+		}
+	}
+
+	zeroing = GetConVarFloat( axisvar ) + GetConVarFloat( "autocvar_set_global_reticle_zero_" + axisString )
+
+	printt( "penis" )
+
+	return zeroing
+}
+
+// END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING
 
 function VMTCallback_HasSightEquipped( ent )
 {
