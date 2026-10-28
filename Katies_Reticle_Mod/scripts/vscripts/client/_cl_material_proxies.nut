@@ -570,7 +570,7 @@ function VMTCallback_FOVReticleOffset( ent )
 	local offset = 1.0
 
 	local reticleCenterFactor = 1.0
-	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_offset_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
+	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_center_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
 
 	local fovVals = [ FOV_70, FOV_76, FOV_80, FOV_86, FOV_90, FOV_96, FOV_100, FOV_106, FOV_110, FOV_115, FOV_120 ]
 	local offsetValsVanilla = [ 1.0, 1.0825, 1.375, 1.22, 1.275, 1.375, 1.4125, 1.495, 1.55, 1.6, 1.7 ]
@@ -680,7 +680,7 @@ function FOVReticleOffsetKatie( ent, isX )
 	}
 
 	local reticleCenterFactor = 1.0
-	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_offset_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
+	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_center_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
 
 	local fovVals = [ FOV_70, FOV_76, FOV_80, FOV_86, FOV_90, FOV_96, FOV_100, FOV_106, FOV_110, FOV_115, FOV_120 ]
 	local offsetValsVanilla = [ 1.0, 1.0825, 1.375, 1.22, 1.275, 1.375, 1.4125, 1.495, 1.55, 1.6, 1.7 ]
@@ -775,7 +775,7 @@ function VMTCallback_ReticleScale( ent )
 	local attachmentDistDifferenceAOG = GetConVarFloat( "autocvar_set_att_diff_aog" ) // 4
 
 	local attachmentDistDifference = 0.0
-	local globalScale = 1.0
+	local reticleTypeScale = 1.0
 
 	local optic = "autocvar_set_reticle_scale_r101"
 	local weapon = player.GetActiveWeapon()
@@ -787,9 +787,9 @@ function VMTCallback_ReticleScale( ent )
 		optic = "autocvar_set_reticle_scale_hcog"
 		attachmentDistDifference = attachmentDistDifferenceHCOG
 			if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-				globalScale = GetConVarFloat( "autocvar_set_global_reticle_scale" )
+				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
 			} else {
-				globalScale = GetConVarFloat( "autocvar_set_global_optic_reticle_scale" )
+				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
 			}
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
@@ -797,9 +797,9 @@ function VMTCallback_ReticleScale( ent )
 		optic = "autocvar_set_reticle_scale_holo"
 		attachmentDistDifference = attachmentDistDifferenceHOLO
 			if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-				globalScale = GetConVarFloat( "autocvar_set_global_reticle_scale" )
+				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
 			} else {
-				globalScale = GetConVarFloat( "autocvar_set_global_optic_reticle_scale" )
+				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
 			}
 		}
 		else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
@@ -807,9 +807,9 @@ function VMTCallback_ReticleScale( ent )
 		optic = "autocvar_set_reticle_scale_aog"
 		attachmentDistDifference = attachmentDistDifferenceAOG
 			if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-				globalScale = GetConVarFloat( "autocvar_set_global_reticle_scale" )
+				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
 			} else {
-				globalScale = GetConVarFloat( "autocvar_set_global_optic_reticle_scale" )
+				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
 			}
 		}
 		else
@@ -819,9 +819,9 @@ function VMTCallback_ReticleScale( ent )
 			if ( ConVarExists( convarName ) )
 				optic = convarName
 				if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-					globalScale = GetConVarFloat( "autocvar_set_global_optic_reticle_scale" ) // They need to be SWAPPED! For some reason! Haven't figured that out yet. If I don't do this, the irons get really small with collimation disabled
+					reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" ) // They need to be SWAPPED! For some reason! Haven't figured that out yet. If I don't do this, the irons get really small with collimation disabled
 				} else {
-					globalScale = GetConVarFloat( "autocvar_set_global_reticle_scale" )
+					reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
 				}
 		}
 	}
@@ -839,13 +839,13 @@ function VMTCallback_ReticleScale( ent )
 
 	if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 )
 	{
-		reticleScale = globalScale * GetConVarFloat( optic ) // Not using globalScale because we're not changing the optics separate from this
+		reticleScale = GetConVarFloat( "autocvar_set_global_reticle_scale" ) * reticleTypeScale * GetConVarFloat( optic ) // Not using reticleTypeScale because we're not changing the optics separate from this
 	}
 	else
 	{
-		// Here's how it works
+		// Here's how it works. This is for Katie to review when she comes back to this a year later wanting to work with the mod again, but forgot everything about it.
 		//
-		// Reticle scale is initially set to 1.0 (or whatever the global scale value is)
+		// Reticle scale is initially set to 1.0 (or whatever the global scale value is).
 		// It is then multiplied by GetConVarFloat( optic ) * ( baseFov / actualFov ).
 		// This is the current optic's personal scale value multiplied by the fraction of how zoomed in you are. Specifically, this uses the exact FOV values so we always get the actual visual data instead of some proxy or other variable down the line that could be affected by other things.
 		// For instance, if you're not zoomed at all and your base FOV setting in degrees is 112, it means 112/112, which solves to 1. Thus, reticle scale = optic's personal scale.
@@ -853,8 +853,14 @@ function VMTCallback_ReticleScale( ent )
 		// Next, we multiply all this by ( opticZoomFovScaled / baseFov ), which gets the current optic's zoom level and generates a scale value based on what size it WILL be when zoomed in fully.
 		// That means it stays the same size as it would be when zoomed in, even when you're zoomed out.
 		// This sells the collimation effect, as holographic reticles are typically 200m away, and being that far means they don't grow or shrink much in your vision pretty much ever. Do mountains grow in your vision when you get 1 foot closer? Nope.
+		// Last but not least is ( GetConVarFloat( "autocvar_set_default_attachment_dist" ) / attachmentDistance ).
+		// This part takes the calculated distance between the optic and the camera, then compares it to a default distance. When the optic is closer than that distance, we shrink the reticle a bit to compensate, and vice versa.
+		// The reason we do this is that the reticle is stuck to the mesh. This technique Respawn used only moves it around on the surface in order to *fake* a parallax effect.
+		// Because the reticle is actually just as close to the cam as the optic model is, recoil makes the reticle bounce between big and small as it's moved closer and farther from the camera.
+		// As stated before with the mountain analogy, real life optics don't suffer from this. So, this math counteracts it.
+		// Good luck working with this in the future. <3
 
-		reticleScale = globalScale * ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov ) * ( GetConVarFloat( "autocvar_set_default_attachment_dist" ) / attachmentDistance )
+		reticleScale = GetConVarFloat( "autocvar_set_global_reticle_scale" ) * reticleTypeScale * ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov ) * ( GetConVarFloat( "autocvar_set_default_attachment_dist" ) / attachmentDistance )
 	}
 
 	return reticleScale
