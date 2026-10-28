@@ -4,9 +4,9 @@
 
 	"Insert"
 	{
-		"$basetexture" "models\weapons\attachments\holo_reflex_reticle_combined_col"
-		"$color2"	"[2 4 8]" // "[1 3 5]"
-		"$clroffsetzero"	"[2 4 8]" // "[1 3 5]"
+		"$basetexture" "models\weapons\attachments\holo_reflex_reticle_combined_faded_ring_3_col"
+		"$color2"	"[4 8 16]" // "[1 3 5]"
+		"$clroffsetzero"	"[4 8 16]" // "[1 3 5]", 2 4 8 was good for a while
 		$holoScale	"[1.0 1.0]" // "[1.0 1.0]"
 	}
 }
