@@ -51,7 +51,8 @@ UnlitTwoTexture
 	"$scale_temp"	"1.2" 		//"1.2" //dummy for cvar scaling =$holoscale
 	"$scale_post"	"1.0" //.0		//temp var for cvar scaling, 1
 
-	"$translate_zero"	"[0.0 0.0]" // For zeroing
+	"translate_zero_x"	"0" // For zeroing
+	"translate_zero_y"	"0"
 
 
 	"Proxies"
@@ -141,12 +142,12 @@ UnlitTwoTexture
 		EntityScript
 		{
 			scriptFuncName	"VMTCallback_ReticleZeroX"
-			resultVar $translate_zero[0]
+			resultVar $translate_zero_x
 		}
 		EntityScript
 		{
 			scriptFuncName	"VMTCallback_ReticleZeroY"
-			resultVar $translate_zero[1]
+			resultVar $translate_zero_y
 		}
 
 
@@ -243,13 +244,13 @@ UnlitTwoTexture
 		add
 		{
 			srcVar1		"$holoOffset2[0]"
-			srcVar2		"$translate_zero[0]"
+			srcVar2		"$translate_zero_x"
 			resultVar	"$holoOffset2[0]"
 		}
 		add
 		{
 			srcVar1		"$holoOffset2[1]"
-			srcVar2		"$translate_zero[1]"
+			srcVar2		"$translate_zero_y"
 			resultVar	"$holoOffset2[1]"
 		}
 
