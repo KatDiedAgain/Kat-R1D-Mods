@@ -564,6 +564,7 @@ const FOV_115 = 1.6
 const FOV_120 = 1.7
 
 // use VMTCallback_FOVReticleOffsetKatie instead
+// Lol special thanks to Nacho for helping me out! Without her, this would have taken a LOT fuckin longer.
 function VMTCallback_FOVReticleOffset( ent )
 {
 	local fov = GetConVarFloat( "cl_fovScale" )
@@ -671,21 +672,20 @@ function FOVReticleOffsetKatie( ent, isX )
 		}
 	}
 
-	local offsetMultiplier = 1.0
+	local axialOffsetMultiplier = 1.0
 
 	local convarName = format( "autocvar_set_reticle_offset_multiplier_%s_%s", optic, isX ? "x" : "y" )
 	if ( ConVarExists( convarName ) )
 	{
-		offsetMultiplier = GetConVarFloat( convarName )
+		axialOffsetMultiplier = GetConVarFloat( convarName )
 	}
 
 	local reticleCenterFactor = 1.0
 	reticleCenterFactor = GetConVarFloat( "autocvar_set_reticle_center_factor" ) // Default is 1 // This is how centered the reticle should be. This value is used to interpolate between Vanilla's and Nacho's values.
 
 	local fovVals = [ FOV_70, FOV_76, FOV_80, FOV_86, FOV_90, FOV_96, FOV_100, FOV_106, FOV_110, FOV_115, FOV_120 ]
-	local offsetValsVanilla = [ 1.0, 1.0825, 1.375, 1.22, 1.275, 1.375, 1.4125, 1.495, 1.55, 1.6, 1.7 ]
 
-	local offsetValsCentered = [
+	local offsetVals = [
 		split(GetConVarString( "autocvar_set_reticle_offset" ),",")[0].tofloat(),
 		split(GetConVarString( "autocvar_set_reticle_offset" ),",")[1].tofloat(),
 		split(GetConVarString( "autocvar_set_reticle_offset" ),",")[2].tofloat(),
@@ -699,24 +699,8 @@ function FOVReticleOffsetKatie( ent, isX )
 		split(GetConVarString( "autocvar_set_reticle_offset" ),",")[10].tofloat()
 		]
 
-	local offsetVals = [
-		((offsetValsVanilla[0] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[0] * reticleCenterFactor)),
-		((offsetValsVanilla[1] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[1] * reticleCenterFactor)),
-		((offsetValsVanilla[2] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[2] * reticleCenterFactor)),
-		((offsetValsVanilla[3] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[3] * reticleCenterFactor)),
-		((offsetValsVanilla[4] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[4] * reticleCenterFactor)),
-		((offsetValsVanilla[5] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[5] * reticleCenterFactor)),
-		((offsetValsVanilla[6] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[6] * reticleCenterFactor)),
-		((offsetValsVanilla[7] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[7] * reticleCenterFactor)),
-		((offsetValsVanilla[8] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[8] * reticleCenterFactor)),
-		((offsetValsVanilla[9] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[9] * reticleCenterFactor)),
-		((offsetValsVanilla[10] * (1.0 - reticleCenterFactor)) + (offsetValsCentered[10] * reticleCenterFactor))
-	]
-
 	for ( local i = 0; i < 11; i++ )
 	{
-		//offset = GraphCapped( fov, fovVals[i], fovVals[i + 1], offsetVals[i], offsetVals[i + 1] )
-
 		if ( fov == fovVals[i] ) {
 			offset = offsetVals[i]
 			break
@@ -730,7 +714,7 @@ function FOVReticleOffsetKatie( ent, isX )
 		}
 	}
 
-	return (offset * offsetMultiplier)
+	return (offset * axialOffsetMultiplier) * GetConVarFloat( "autocvar_set_reticle_offset_amount" )
 }
 
 /*
