@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Katies_Open_Hemlok_Irons"
+	"addonDescription"		"Modifies the Hemlok to make the iron sights less clunky. Not realistic, but, hey, look at the R-97."
+	"addonversion"			"1"
+	"addonauthor"			"KatDiedAgain"
+
+	"addonContent_Script"	"1"
+}
