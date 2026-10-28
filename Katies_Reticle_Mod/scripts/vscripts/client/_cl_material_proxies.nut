@@ -809,9 +809,11 @@ function VMTCallback_ReticleScale( ent )
 	local opticZoomFovScaled = GetWeaponInfoFileKeyField_WithMods_Global( weapon.GetClassname(), weapon.GetMods(), "zoom_fov" ) * fovScale
 
 	local attachment = GetHoloOffsetAttachment( weapon )
-	//local attachment = "HOLO_REAR"
+	local attachID = ent.LookupAttachment( attachment )
+	if ( attachID == -1 )
+		return reticleScale
 
-	local holoRearOrg = ent.GetAttachmentOrigin( ent.LookupAttachment( attachment ) )
+	local holoRearOrg = ent.GetAttachmentOrigin( attachID )
 	local camOrg = GetLocalViewPlayer().CameraPosition()
 
 	local camHoloVec = camOrg - holoRearOrg
