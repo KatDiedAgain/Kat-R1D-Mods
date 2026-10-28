@@ -54,8 +54,8 @@ function main()
 
 		AutoCVar( "set_reticle_scale_" + weaponNames[i], defaultScales[i], "Sets the scale of the reticle.", "" )
 
-		AutoCVar( "set_reticle_zero_" + weaponNames[i] + "_x", defaultZero[i], "Sets the zero of the reticle.", "" )
-		AutoCVar( "set_reticle_zero_" + weaponNames[i] + "_y", defaultZero[i], "Sets the zero of the reticle.", "" )
+		AutoCVar( "set_reticle_zero_" + weaponNames[i] + "_x", defaultZeroX[i], "Sets the zero of the reticle.", "" )
+		AutoCVar( "set_reticle_zero_" + weaponNames[i] + "_y", defaultZeroY[i], "Sets the zero of the reticle.", "" )
 	}
 }
 

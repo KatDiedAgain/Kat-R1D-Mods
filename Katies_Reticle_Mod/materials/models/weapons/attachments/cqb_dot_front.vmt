@@ -242,9 +242,15 @@ UnlitTwoTexture
 		// ZEROING
 		add
 		{
-			srcVar1		"$holoOffset2"
-			srcVar2		"$translate_zero"
-			resultVar	"$holoOffset2"
+			srcVar1		"$holoOffset2[0]"
+			srcVar2		"$translate_zero[0]"
+			resultVar	"$holoOffset2[0]"
+		}
+		add
+		{
+			srcVar1		"$holoOffset2[1]"
+			srcVar2		"$translate_zero[1]"
+			resultVar	"$holoOffset2[1]"
 		}
 
 		// Final transform
