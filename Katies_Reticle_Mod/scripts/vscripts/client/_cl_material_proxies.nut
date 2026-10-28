@@ -810,7 +810,7 @@ function VMTCallback_ReticleScale( ent )
 
 	local attachment = GetHoloOffsetAttachment( weapon )
 	local attachID = ent.LookupAttachment( attachment )
-	if ( attachID == -1 )
+	if ( attachID <= 0 )
 		return reticleScale
 
 	local holoRearOrg = ent.GetAttachmentOrigin( attachID )
