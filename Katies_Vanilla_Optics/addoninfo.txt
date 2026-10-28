@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Katies_Vanilla_Optics"
+	"addonDescription"		"Re-enables completely vanilla optics."
+	"addonversion"			"1"
+	"addonauthor"			"KatDiedAgain"
+
+	"addonContent_Script"	"1"
+}

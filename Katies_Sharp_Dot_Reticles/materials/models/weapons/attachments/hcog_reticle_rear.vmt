@@ -1,0 +1,10 @@
+Patch
+{
+	"Include"				"materials/models/weapons/attachments/hcog_reticle_front.vmt"
+
+	"Insert"
+	{
+		"$basetexture" 		"models/weapons/attachments/blank_image_no_alpha"
+		"$clroffsetzero" 	"[5 3 1]"
+	}
+}

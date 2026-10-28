@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Katies_Sharp_Dot_Reticles"
+	"addonDescription"		"Makes all three projecting optics have small, bright dots as their reticles, replacing the originals. For use with Katies_Reticle_Mod."
+	"addonversion"			"1"
+	"addonauthor"			"KatDiedAgain"
+
+	"addonContent_Script"	"1"
+}

@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Katies_Noncoplanar_Optics"
+	"addonDescription"		"Re-enables vanilla reticle offset disparity for the HCOG and Holosight for use with Katies_Reticle_Mod."
+	"addonversion"			"1"
+	"addonauthor"			"KatDiedAgain"
+
+	"addonContent_Script"	"1"
+}
