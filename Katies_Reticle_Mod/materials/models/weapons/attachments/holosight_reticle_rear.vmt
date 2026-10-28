@@ -4,7 +4,7 @@
 
 	"Insert"
 	{
-		"$basetexture" "models\weapons\attachments\holo_reflex_reticle_combined_faded_ring_3_col"
+		"$basetexture" "models\weapons\attachments\holo_reflex_reticle_combined_col"
 		"$color2"	"[2 4 8]" // "[1 3 5]"
 		"$clroffsetzero"	"[2 4 8]" // "[1 3 5]"
 		$holoScale	"[1.0 1.0]" // "[1.0 1.0]"
