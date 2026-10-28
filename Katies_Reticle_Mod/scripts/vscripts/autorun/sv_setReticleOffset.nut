@@ -23,6 +23,7 @@ function main()
 
 	AutoCVar( "set_reticle_offset", "1.55,1.41,1.31,1.21,1.13,1.02,0.95,0.855,0.795,0.75,0.65", "Sets the offsetValsCentered value in the material proxies nut file.", "" )
 	AutoCVar( "set_reticle_offset_amount", "1.0", "Multiplies global offset values.", "" )
+	AutoCVar( "disable_transitional_multiplier", "0", "Disables the way the reticle moves more right before the ADS animation ends.", "" )
 
 	AutoCVar( "set_global_reticle_scale", "1.0", "Globally affects the scale of all reticles.", "" )
 	AutoCVar( "set_irons_reticle_scale", "1.0", "Globally affects the scale of all iron-dot reticles.", "" )

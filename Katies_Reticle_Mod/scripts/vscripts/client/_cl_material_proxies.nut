@@ -710,7 +710,14 @@ function FOVReticleOffsetKatie( ent, isX )
 		}
 	}
 
-	return (offset * axialOffsetMultiplier) * GetConVarFloat( "autocvar_set_reticle_offset_amount" )
+	if ( GetConVarFloat( "autocvar_disable_transitional_multiplier" ) == 1 )
+	{
+		return (offset * axialOffsetMultiplier) * GetConVarFloat( "autocvar_set_reticle_offset_amount" )
+	}
+	else
+	{
+		return (offset * axialOffsetMultiplier) * GetConVarFloat( "autocvar_set_reticle_offset_amount" ) + ( ( ( player.GetAdsFraction() * -1 ) + 1 ) * 1.5 )
+	}
 }
 
 /*
