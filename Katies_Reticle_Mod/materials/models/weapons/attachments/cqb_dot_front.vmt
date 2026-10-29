@@ -243,7 +243,7 @@ UnlitTwoTexture
 		// ZEROING
 		add
 		{
-			srcVar1		"$holoOffset2[0]"
+			srcVar1		"$holoOffset2[0]" // Is this not possible? Do we need a second var? Like, keep holoOffset2, but then do offset + translate = finalOffset or smth???
 			srcVar2		"$translate_zero_x"
 			resultVar	"$holoOffset2[0]"
 		}
