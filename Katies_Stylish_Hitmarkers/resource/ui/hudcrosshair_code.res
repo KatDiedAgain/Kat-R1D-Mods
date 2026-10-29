@@ -47,11 +47,11 @@ Resource/UI/HudCrosshair.res
 		ypos				0
 		zpos				203
 
-		ScriptModify
-		{
-			scriptFuncName	VMTCallback_HitmarkerSpring
-			resultVar   scaleImage
-		}
+		//ScriptModify
+		//{
+		//	scriptFuncName	VMTCallback_HitmarkerSpring
+		//	resultVar   scaleImage
+		//}
 	}
 
 	Crosshair0

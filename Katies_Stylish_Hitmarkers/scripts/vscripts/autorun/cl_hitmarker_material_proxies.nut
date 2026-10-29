@@ -4,8 +4,16 @@ function main()
 
 function VMTCallback_HitmarkerSpring( ent )
 {
-	//if ( !( "createTime" in ent.s ) )
-	//	return 0.0
+	local player = GetLocalViewPlayer()
+	local weapon = player.GetActiveWeapon()
+
+	if( !("lastHitTime" in weapon.s ) )
+		{
+		   weapon.s.lastHitTime <- 0
+		}
+	weapon.s.lastHitTime = Time()
+
+	//AddLocalPlayerDidDamageCallback
 
 	local vibrate = sin( Time() * 0.1 )
 	//local lastFiredTime = GetLocalViewPlayer().GetLastFiredTime()
