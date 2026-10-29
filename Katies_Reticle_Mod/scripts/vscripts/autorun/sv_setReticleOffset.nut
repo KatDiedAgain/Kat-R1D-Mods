@@ -67,9 +67,9 @@ function main()
 		"mp_runoff",
 		"mp_swampland",
 		"mp_war_games",
-		"mp_dig_site", // This ain't the name, is it?
+		"mp_harmony_mines", // dig site
 		"mp_haven",
-		"mp_switchback",
+		"mp_switchback", // Export
 		"mp_backwater",
 		"mp_sandtrap",
 		"mp_zone_18",
@@ -98,7 +98,7 @@ function main()
 		"4.0,8.0,16.0", //	"mp_runoff",
 		"4.0,8.0,16.0", //	"mp_swampland",
 		"4.0,8.0,16.0", //	"mp_war_games",
-		"4.0,8.0,16.0", //	"mp_dig_site",
+		"3.0,6.0,12.0", //	"mp_harmony_mines",
 		"4.0,8.0,16.0", //	"mp_haven",
 		"4.0,8.0,16.0", //	"mp_switchback",
 		"4.0,8.0,16.0", //	"mp_backwater",
