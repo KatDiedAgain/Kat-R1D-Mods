@@ -14,3 +14,12 @@ function VMTCallback_HitmarkerSpring( ent )
 
 	return vibrate * 2 // * ( lastFiredTime / 60 )
 }
+
+function HitmarkerSpring()
+{
+	local vibrate = sin( Time() * 0.1 )
+
+  printt("penis returns")
+
+	return vibrate * 2
+}

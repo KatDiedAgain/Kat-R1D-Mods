@@ -23,7 +23,7 @@ UnlitTwoTexture
 	"$allowoverbright" "1"
 
 	"$color"						"[1 1 1]"
-	"$color2"					"[0 0 12]"//"[1 0.25 0.25]"
+	"$color2"					"[1 0.25 0.25]"
 	"$clroffsetzero"	"[1 0.25 0.25]"
 
 	"$t1translate"		"[0.0 0.0]"
