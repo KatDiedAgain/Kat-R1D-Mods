@@ -166,7 +166,7 @@ function DamageEvent( attacker, params )
 	printt( " " )
 }
 
-function VMTCallback_HitmarkerSpring( ent )
+function VMTCallback_HitmarkerSpring()
 {
 	printt("penis returns, like when Moe kicks Barney out of the bar in The Simpsons and he just appears behind him")
 
@@ -190,17 +190,17 @@ function VMTCallback_HitmarkerSpring( ent )
 	return 2
 }
 
-function VMTCallback_HitmarkerColorR( ent )
+function VMTCallback_HitmarkerColorR()
 {
 	return ChangeHitmarkerColor( 0 )
 }
 
-function VMTCallback_HitmarkerColorG( ent )
+function VMTCallback_HitmarkerColorG()
 {
 	return ChangeHitmarkerColor( 1 )
 }
 
-function VMTCallback_HitmarkerColorB( ent )
+function VMTCallback_HitmarkerColorB()
 {
 	return ChangeHitmarkerColor( 2 )
 }

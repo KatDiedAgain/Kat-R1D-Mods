@@ -69,26 +69,26 @@ UnlitTwoTexture
 		}
 
 		// Spring animation
-		EntityScript
+		ScriptModify
   	{
       scriptFuncName	"VMTCallback_HitmarkerSpring"
       resultVar   "$t1scale"
     }
 
 		// Color change and animation
-		EntityScript
+		ScriptModify
   	{
       scriptFuncName	"VMTCallback_HitmarkerColorR"
       resultVar   "$color2[0]"
 			//resultVar   "$clroffsetzero[0]"
     }
-		EntityScript
+		ScriptModify
   	{
       scriptFuncName	"VMTCallback_HitmarkerColorG"
       resultVar   "$color2[1]"
 			//resultVar   "$clroffsetzero[1]"
     }
-		EntityScript
+		ScriptModify
   	{
       scriptFuncName	"VMTCallback_HitmarkerColorB"
       resultVar   "$color2[2]"
