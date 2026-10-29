@@ -1,0 +1,95 @@
+//"Basic"
+//{
+//	"$basetexture" "vgui/hud/crosshairs/hit_indicator_crit_style"
+//	"$additive" "1"
+//	"$translucent" "1"
+//	//"$vertexcolor" "1"
+//	"$vertexalpha" "1"
+//	"$ignorez"     "1"
+//
+//	// Additional modified data
+//	"color" "[0 0 1]"
+//}
+
+UnlitTwoTexture
+{
+	"$basetexture"		"vgui/hud/crosshairs/hit_indicator_crit_style_glow"
+	"$Texture2" 			"dev\noise_post"
+	"$additive"				"1"
+	"$translucent"		"1"
+	"$vertexcolor"		"1"
+	"$vertexalpha" 		"1"
+	"$ignorez"     		"1"
+	"$allowoverbright" "1"
+
+	"color"						"[1 1 1]"
+	"color2"					"[1 0 0]"
+	"$clroffsetzero"	"[1 0 0]"
+
+	"$t1translate"		"[0.0 0.0]"
+	"$t1scale"				"1.0"
+	"$t1rot"					"0.0"
+
+	"$t2offset" 0
+	"$t2scale" 3
+	"$t2rot" 0
+	"$scroll" "[0 1]"
+
+	"Proxies"
+	{
+		// Noise
+		// Horizontal movement speed
+		"UniformNoise"
+		{
+			"minVal" 0.5
+			"maxVal" 1
+			"resultVar" "$scroll[0]"
+		}
+		//Vertical movement speed
+		"UniformNoise"
+		{
+			"minVal" 0.5
+			"maxVal" 1
+			"resultVar" "$scroll[1]"
+		}
+		//Move the 2nd texture using horiz and vert speed
+		"TextureTransform"
+		{
+			"translateVar" "$scroll"
+			"scaleVar" "$t2scale"
+			"rotateVar" "$t2rot"
+			"resultvar" "$texture2transform"
+		}
+		//flicker
+		"UniformNoise"
+		{
+			"minVal" 0.8
+			"maxVal" 3.0
+			"resultVar" "$color"
+		}
+
+		// Spring animation
+		EntityScript
+  	{
+      scriptFuncName	"VMTCallback_HitmarkerSpring"
+      resultVar   "$t1scale"
+    }
+
+		//Sine // a proxy which produces values of a sine wave
+		//{
+		//	sineperiod	0.05      // the sine cycle length in seconds
+		//	sinemin		1      // min output value
+		//	sinemax		1.1      // max output value
+		//	resultVar	$t1scale // where the oscillating output value is written to
+		//}
+
+		// Transform
+		"TextureTransform"
+		{
+			"scaleVar"			"$t1scale"
+			"translateVar"	"$t1translate"
+			//"rotateVar"			"$t1rot"
+			"resultVar"			"$basetexturetransform"
+		}
+	}
+}

@@ -716,7 +716,12 @@ function FOVReticleOffsetKatie( ent, isX )
 	}
 	else
 	{
-		return (offset * axialOffsetMultiplier) * GetConVarFloat( "autocvar_set_reticle_offset_amount" ) + ( ( ( player.GetAdsFraction() * -1 ) + 1 ) * 1.5 )
+
+		local transitionalOffset = 0
+		if ( player.GetActiveWeapon().GetClassname() != null && player.GetActiveWeapon().GetClassname() != "mp_weapon_lmg" )
+			transitionalOffset = ( ( player.GetAdsFraction() * -1 ) + 1 ) * 1.5
+
+		return (offset * axialOffsetMultiplier) * GetConVarFloat( "autocvar_set_reticle_offset_amount" ) + transitionalOffset
 	}
 }
 

@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Katies_Stylish_Hitmarkers"
+	"addonDescription"		"Land a single R-97 shot from across the map, get a weak hitmarker, and die... with style. IMPORTANT: REQUIRES GAME RESTART!"
+	"addonversion"			"1"
+	"addonauthor"			"KatDiedAgain"
+
+	"addonContent_Script"	"1"
+}
