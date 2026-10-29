@@ -48,6 +48,68 @@ function main()
 
 	local defaultScales = [ "2.0", "3.0", "2.0", "1.0", "2.0", "1.0", "2.0", "1.0", "1.0", "1.5" ]
 
+	local mapsList = [
+		"mp_fracture",
+		"mp_nexus",
+		"mp_overlook",
+		"mp_airbase",
+		"mp_outpost_207",
+		"mp_corporate",
+		"mp_boneyard",
+		"mp_angel_city",
+		"mp_lagoon",
+		"mp_demeter",
+		"mp_smugglers_cove",
+		"mp_rise",
+		"mp_relic",
+		"mp_colony",
+		"mp_training_ground",
+		"mp_runoff",
+		"mp_swampland",
+		"mp_war_games",
+		"mp_dig_site", // This ain't the name, is it?
+		"mp_haven",
+		"mp_switchback",
+		"mp_backwater",
+		"mp_sandtrap",
+		"mp_zone_18",
+		"mp_box",
+		"mp_nest",
+		"mp_mia",
+		"mp_npe"
+	]
+
+	local holosightColorByMap = [
+		"3.0,6.0,12.0", //	"mp_fracture",
+		"4.0,8.0,16.0", //	"mp_nexus",
+		"2.4,4.8,9.6", //	"mp_overlook",
+		"2.0,4.0,8.0", //	"mp_airbase",
+		"4.0,8.0,16.0", //	"mp_outpost_207",
+		"4.0,8.0,16.0", //	"mp_corporate",
+		"4.0,8.0,16.0", //	"mp_boneyard",
+		"4.0,8.0,16.0", //	"mp_angel_city",
+		"4.0,8.0,16.0", //	"mp_lagoon",
+		"4.0,8.0,16.0", //	"mp_demeter",
+		"4.0,8.0,16.0", //	"mp_smugglers_cove",
+		"4.0,8.0,16.0", //	"mp_rise",
+		"4.0,8.0,16.0", //	"mp_relic",
+		"4.0,8.0,16.0", //	"mp_colony",
+		"4.0,8.0,16.0", //	"mp_training_ground",
+		"4.0,8.0,16.0", //	"mp_runoff",
+		"4.0,8.0,16.0", //	"mp_swampland",
+		"4.0,8.0,16.0", //	"mp_war_games",
+		"4.0,8.0,16.0", //	"mp_dig_site",
+		"4.0,8.0,16.0", //	"mp_haven",
+		"4.0,8.0,16.0", //	"mp_switchback",
+		"4.0,8.0,16.0", //	"mp_backwater",
+		"4.0,8.0,16.0", //	"mp_sandtrap",
+		"4.0,8.0,16.0", //	"mp_zone_18",
+		"4.0,8.0,16.0", //	"mp_box",
+		"4.0,8.0,16.0", //	"mp_nest",
+		"4.0,8.0,16.0", //	"mp_mia",
+		"4.0,8.0,16.0" //	"mp_npe"
+	]
+
 	for ( local i = 0; i < weaponNames.len(); i++ )
 	{
 		AutoCVar( "set_reticle_offset_multiplier_" + weaponNames[i] + "_x", defaultOffsetsX[i], "Sets the xOffsetMultiplier value in the material proxies nut file.", "" )
@@ -58,6 +120,12 @@ function main()
 		AutoCVar( "set_reticle_zero_" + weaponNames[i] + "_x", defaultZeroX[i], "Sets the zero of the reticle.", "" )
 		AutoCVar( "set_reticle_zero_" + weaponNames[i] + "_y", defaultZeroY[i], "Sets the zero of the reticle.", "" )
 	}
+
+	for ( local i = 0; i < mapsList.len(); i++ )
+	{
+		AutoCVar( "holosight_corrected_color_" + mapsList[i], holosightColorByMap[i], "Sets the custom color for the Holosight for a given map.", "" )
+	}
+
 }
 
 main()

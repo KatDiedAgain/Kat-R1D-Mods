@@ -926,6 +926,29 @@ function CalculateAxialZero( ent, isX )
 
 // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING // END ZEROING
 
+function VMTCallback_DriveBrightnessCompensationR( ent )
+{
+	return CalculateCustomColor( ent, 0 )
+}
+
+function VMTCallback_DriveBrightnessCompensationG( ent )
+{
+	return CalculateCustomColor( ent, 1 )
+}
+
+function VMTCallback_DriveBrightnessCompensationB( ent )
+{
+	return CalculateCustomColor( ent, 2 )
+}
+
+function CalculateCustomColor( ent, colIndex )
+{
+	local mapName = GetMapName()
+	local convarName = "autocvar_holosight_corrected_color_" + mapName
+
+	return split( GetConVarString( convarName ), "," )[ colIndex ].tofloat()
+}
+
 function VMTCallback_HasSightEquipped( ent )
 {
 	local player = GetLocalViewPlayer()

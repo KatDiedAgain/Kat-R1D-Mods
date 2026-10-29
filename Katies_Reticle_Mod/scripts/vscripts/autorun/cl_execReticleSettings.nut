@@ -1,11 +1,11 @@
 function main()
 {
-    AddCallback_OnClientScriptInit( Reticle_ScriptInit )
+    //AddCallback_OnClientScriptInit( Reticle_ScriptInit )
 }
 
 function Reticle_ScriptInit( player )
 {
-    player.ClientCommand( "exec custom_reticle_offsets.cfg" )
+    //player.ClientCommand( "exec custom_reticle_offsets.cfg" )
 }
 
 main()

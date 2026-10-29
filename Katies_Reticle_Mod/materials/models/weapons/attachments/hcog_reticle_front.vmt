@@ -28,7 +28,6 @@ UnlitTwoTexture
 
 	$TranslatescaleX "2.0"		//x scalar
 	$TranslatescaleY "2.0"		//y scalar
-	//$scaleScale "1.0"			// Scaling Scalar from Katie. Trying some shit out lmao. $holoScale doesn't have a $translateScale because it was taken by $holoOffset... what the hell, man? It's affected at the bottom of the script. Why two variables per thing..? Whatever.
 	$holoScale "[1.0 1.0]"		// Base scaling var [inverted!]
 	$holoOffset "[0.0 0.0]"		// Base Offset var
 
