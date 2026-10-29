@@ -860,18 +860,28 @@ function VMTCallback_ReticleScale( ent )
 function VMTCallback_ReticleZeroX( ent )
 {
 	printt( "penis1" )
-	return CalculateAxialZero( ent, "x" )
+	return CalculateAxialZero( ent, true )
 }
 
 function VMTCallback_ReticleZeroY( ent )
 {
 	printt( "penis2" )
-	return CalculateAxialZero( ent, "y" )
+	return CalculateAxialZero( ent, false )
 }
 
-function CalculateAxialZero( ent, axisString )
+function CalculateAxialZero( ent, isX )
 {
 	local zeroing = 0
+	local axisString = "x"
+
+	if ( isX )
+	{
+		axisString = "x"
+	}
+	else
+	{
+		axisString = "y"
+	}
 
 	local player = GetLocalViewPlayer()
 
