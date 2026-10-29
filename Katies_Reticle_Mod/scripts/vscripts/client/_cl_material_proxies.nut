@@ -767,50 +767,50 @@ function VMTCallback_ReticleScale( ent )
 	local optic = "autocvar_set_reticle_scale_r101"
 	local weapon = player.GetActiveWeapon()
 
-	if ( weapon )
+	if ( !IsValid( weapon ) )
+		return reticleScale
+
+	if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
 	{
-		if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
-		{
-		optic = "autocvar_set_reticle_scale_hcog"
-		attachmentDistDifference = attachmentDistDifferenceHCOG
+	optic = "autocvar_set_reticle_scale_hcog"
+	attachmentDistDifference = attachmentDistDifferenceHCOG
+		if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
+		} else {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
+		}
+	}
+	else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
+	{
+	optic = "autocvar_set_reticle_scale_holo"
+	attachmentDistDifference = attachmentDistDifferenceHOLO
+		if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
+		} else {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
+		}
+	}
+	else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
+	{
+	optic = "autocvar_set_reticle_scale_aog"
+	attachmentDistDifference = attachmentDistDifferenceAOG
+		if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
+		} else {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
+		}
+	}
+	else
+	{
+		// Remove mp_weapon_ from the classname
+		local convarName = "autocvar_set_reticle_scale_" + weapon.GetClassname().slice( 10, weapon.GetClassname().len() )
+		if ( ConVarExists( convarName ) )
+			optic = convarName
 			if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
+				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" ) // They need to be SWAPPED! For some reason! Haven't figured that out yet. If I don't do this, the irons get really small with collimation disabled
 			} else {
-				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
-			}
-		}
-		else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
-		{
-		optic = "autocvar_set_reticle_scale_holo"
-		attachmentDistDifference = attachmentDistDifferenceHOLO
-			if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
 				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
-			} else {
-				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
 			}
-		}
-		else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
-		{
-		optic = "autocvar_set_reticle_scale_aog"
-		attachmentDistDifference = attachmentDistDifferenceAOG
-			if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
-			} else {
-				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
-			}
-		}
-		else
-		{
-			// Remove mp_weapon_ from the classname
-			local convarName = "autocvar_set_reticle_scale_" + weapon.GetClassname().slice( 10, weapon.GetClassname().len() )
-			if ( ConVarExists( convarName ) )
-				optic = convarName
-				if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-					reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" ) // They need to be SWAPPED! For some reason! Haven't figured that out yet. If I don't do this, the irons get really small with collimation disabled
-				} else {
-					reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
-				}
-		}
 	}
 
 	local opticZoomFovScaled = GetWeaponInfoFileKeyField_WithMods_Global( weapon.GetClassname(), weapon.GetMods(), "zoom_fov" ) * fovScale
@@ -916,7 +916,8 @@ function CalculateAxialZero( ent, isX )
 		}
 	}
 
-	zeroing = GetConVarFloat( axisvar ) + GetConVarFloat( "autocvar_set_global_reticle_zero_" + axisString )
+	local zeroCvar = "autocvar_set_global_reticle_zero_" + axisString
+	zeroing = GetConVarFloat( axisvar ) + GetConVarFloat( zeroCvar )
 
 	printt( "penis" )
 

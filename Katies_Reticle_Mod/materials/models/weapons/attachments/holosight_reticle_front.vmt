@@ -45,8 +45,8 @@ UnlitTwoTexture
 	"$scale_temp"	"1.2" 		//"1.2" //dummy for cvar scaling =$holoscale
 	"$scale_post"	"1.0" //.0		//temp var for cvar scaling
 
-	"translate_zero_x"	"0" // For zeroing
-	"translate_zero_y"	"0"
+	"$translate_zero_x"	"0" // For zeroing
+	"$translate_zero_y"	"0"
 
 	"Proxies"
 	{
