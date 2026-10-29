@@ -22,9 +22,9 @@ UnlitTwoTexture
 	"$ignorez"     		"1"
 	"$allowoverbright" "1"
 
-	"color"						"[1 1 1]"
-	"color2"					"[1 0 0]"
-	"$clroffsetzero"	"[1 0 0]"
+	"$color"						"[1 1 1]"
+	"$color2"					"[0 0 12]"//"[1 0.25 0.25]"
+	"$clroffsetzero"	"[1 0.25 0.25]"
 
 	"$t1translate"		"[0.0 0.0]"
 	"$t1scale"				"1.0"
