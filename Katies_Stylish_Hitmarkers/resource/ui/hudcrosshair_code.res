@@ -25,7 +25,8 @@ Resource/UI/HudCrosshair.res
 		//image				HUD/crosshairs/titan_40mm_warning_shield
 		image				HUD/crosshairs/hit_indicator_weak
 		scaleImage			1
-		drawcolor			"128 128 128 255"
+		//drawcolor			"128 128 128 255" // Not a fan of the faded look
+		drawcolor			"255 255 255 255"
 
 		xpos				0
 		ypos				0

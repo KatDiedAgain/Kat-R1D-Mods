@@ -75,6 +75,26 @@ UnlitTwoTexture
       resultVar   "$t1scale"
     }
 
+		// Color change and animation
+		EntityScript
+  	{
+      scriptFuncName	"VMTCallback_HitmarkerColorR"
+      //resultVar   "$color2[0]"
+			resultVar   "$clroffsetzero[0]"
+    }
+		EntityScript
+  	{
+      scriptFuncName	"VMTCallback_HitmarkerColorG"
+      //resultVar   "$color2[1]"
+			resultVar   "$clroffsetzero[1]"
+    }
+		EntityScript
+  	{
+      scriptFuncName	"VMTCallback_HitmarkerColorB"
+      //resultVar   "$color2[2]"
+			resultVar   "$clroffsetzero[2]"
+    }
+
 		//Sine // a proxy which produces values of a sine wave
 		//{
 		//	sineperiod	0.05      // the sine cycle length in seconds
@@ -88,7 +108,7 @@ UnlitTwoTexture
 		{
 			"scaleVar"			"$t1scale"
 			"translateVar"	"$t1translate"
-			//"rotateVar"			"$t1rot"
+			"rotateVar"			"$t1rot"
 			"resultVar"			"$basetexturetransform"
 		}
 	}
