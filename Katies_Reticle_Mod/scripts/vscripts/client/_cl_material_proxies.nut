@@ -851,7 +851,7 @@ function VMTCallback_ReticleScale( ent )
 
 		reticleScale = GetConVarFloat( "autocvar_set_global_reticle_scale" ) * reticleTypeScale * ( GetConVarFloat( optic ) * ( baseFov / actualFov ) ) * ( opticZoomFovScaled / baseFov ) * ( GetConVarFloat( "autocvar_set_default_attachment_dist" ) / attachmentDistance )
 	}
-
+	//printt("Test test test test test")
 	return reticleScale
 }
 
