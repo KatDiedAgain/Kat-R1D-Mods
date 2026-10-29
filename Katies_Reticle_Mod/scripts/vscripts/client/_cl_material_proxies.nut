@@ -770,14 +770,17 @@ function VMTCallback_ReticleScale( ent )
 	if ( !IsValid( weapon ) )
 		return reticleScale
 
+	// This compensates for the change in scale when you disable collimation
+	local collimationScaleComp = 0.75
+
 	if ( IsBodyGroupSet( weapon, "sight_hcog" ) )
 	{
 	optic = "autocvar_set_reticle_scale_hcog"
 	attachmentDistDifference = attachmentDistDifferenceHCOG
 		if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-			reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
-		} else {
 			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
+		} else {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" ) * collimationScaleComp // If I don't multiply, the irons get really small with collimation disabled
 		}
 	}
 	else if ( IsBodyGroupSet( weapon, "sight_holo" ) )
@@ -785,9 +788,9 @@ function VMTCallback_ReticleScale( ent )
 	optic = "autocvar_set_reticle_scale_holo"
 	attachmentDistDifference = attachmentDistDifferenceHOLO
 		if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-			reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
-		} else {
 			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
+		} else {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" ) * collimationScaleComp // If I don't multiply, the irons get really small with collimation disabled
 		}
 	}
 	else if ( IsBodyGroupSet( weapon, "sight_aog04" ) )
@@ -795,9 +798,9 @@ function VMTCallback_ReticleScale( ent )
 	optic = "autocvar_set_reticle_scale_aog"
 	attachmentDistDifference = attachmentDistDifferenceAOG
 		if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-			reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
-		} else {
 			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" )
+		} else {
+			reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" ) * collimationScaleComp // If I don't multiply, the irons get really small with collimation disabled
 		}
 	}
 	else
@@ -807,7 +810,7 @@ function VMTCallback_ReticleScale( ent )
 		if ( ConVarExists( convarName ) )
 			optic = convarName
 			if ( GetConVarFloat( "autocvar_disable_collimation" ) == 1 ) {
-				reticleTypeScale = GetConVarFloat( "autocvar_set_optic_reticle_scale" ) // They need to be SWAPPED! For some reason! Haven't figured that out yet. If I don't do this, the irons get really small with collimation disabled
+				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" ) * collimationScaleComp // If I don't multiply, the irons get really small with collimation disabled
 			} else {
 				reticleTypeScale = GetConVarFloat( "autocvar_set_irons_reticle_scale" )
 			}

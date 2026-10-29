@@ -27,7 +27,7 @@ function main()
 
 	AutoCVar( "set_global_reticle_scale", "1.0", "Globally affects the scale of all reticles.", "" )
 	AutoCVar( "set_irons_reticle_scale", "1.0", "Globally affects the scale of all iron-dot reticles.", "" )
-	AutoCVar( "set_optic_reticle_scale", "0.75", "Globally affects the scale of all optical reticles.", "" )
+	AutoCVar( "set_optic_reticle_scale", "1.0", "Globally affects the scale of all optical reticles.", "" )
 	AutoCVar( "disable_collimation", "0", "Disables the consistent scaling of the reticle across FOVs and optic positions.", "" )
 
 	AutoCVar( "set_global_reticle_zero_x", "0", "How much the reticle should be translated relative to its default position on the X axis.", "" )
