@@ -42,17 +42,12 @@ Resource/UI/HudCrosshair.res
 		image				HUD/crosshairs/hit_indicator_crit
 		scaleImage			1
 		//drawcolor			"255 128 64 255"
-		drawcolor			"255 64 64 255"
+		//drawcolor			"255 64 64 255"
+		drawcolor			"255 255 255 255" // trying to unify the color
 
 		xpos				0
 		ypos				0
 		zpos				203
-
-		//ScriptModify
-		//{
-		//	scriptFuncName	VMTCallback_HitmarkerSpring
-		//	resultVar   scaleImage
-		//}
 	}
 
 	Crosshair0
