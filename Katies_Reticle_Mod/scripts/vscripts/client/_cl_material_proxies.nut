@@ -859,13 +859,11 @@ function VMTCallback_ReticleScale( ent )
 
 function VMTCallback_ReticleZeroX( ent )
 {
-	printt( "penis1" )
 	return CalculateAxialZero( ent, true )
 }
 
 function VMTCallback_ReticleZeroY( ent )
 {
-	printt( "penis2" )
 	return CalculateAxialZero( ent, false )
 }
 
@@ -918,8 +916,6 @@ function CalculateAxialZero( ent, isX )
 
 	local zeroCvar = "autocvar_set_global_reticle_zero_" + axisString
 	zeroing = GetConVarFloat( axisvar ) + GetConVarFloat( zeroCvar )
-
-	printt( "penis" )
 
 	return zeroing
 }
