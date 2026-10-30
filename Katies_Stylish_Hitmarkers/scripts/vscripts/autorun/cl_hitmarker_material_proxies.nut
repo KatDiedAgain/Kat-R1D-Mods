@@ -104,21 +104,22 @@ function DamageEvent( attacker, params )
 	{
 		victimType = 1
 	}
-	else if ( params.victim.IsPlayer() )
-	{
-		victimType = 2
-	}
-	else if ( params.victim.IsTitan() )
-	{
-		victimType = 3
-	}
 	else if ( params.victim.IsDropship() )
 	{
 		victimType = 6
 	}
-	else
+	else // Hoping this means "if all three are false, and ONLY if all three are false, do this" instead of "if only condition #3 is false, do this"
 	{
 		victimType = -1
+	}
+
+	if ( params.victim.IsPlayer() ) // Check player after all the rest
+	{
+		victimType = 2
+	}
+	if ( params.victim.IsTitan() ) // Overwrite if a Titan is involved whatsoever. Otherwise, only AutoTitans count as Titans.
+	{
+		victimType = 3
 	}
 
 	if ( params.hitIneffective )
