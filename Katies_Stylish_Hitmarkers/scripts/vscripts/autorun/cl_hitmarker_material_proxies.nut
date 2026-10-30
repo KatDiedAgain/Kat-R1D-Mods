@@ -219,7 +219,7 @@ function VMTCallback_HideStandardHitmarkerDuringCrit( player_but_different )
 
 function VMTCallback_HitmarkerFrameChange( player_but_different )
 {
-	if ( isKill )
+	if ( isKill || ( victimType == 3 && hitmarkerType == 2 ) )
 	{
 		return 1
 	}
