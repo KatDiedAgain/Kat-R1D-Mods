@@ -951,7 +951,14 @@ function CalculateCustomColor( ent, colIndex )
 	local mapName = GetMapName()
 	local convarName = "autocvar_holosight_corrected_color_" + mapName
 
-	return split( GetConVarString( convarName ), "," )[ colIndex ].tofloat()
+	if ( ConVarExists( convarName ) ){
+		return split( GetConVarString( convarName ), "," )[ colIndex ].tofloat()
+	}
+	else
+	{
+		// Default
+		return split( "4.0,8.0,16.0", "," )[ colIndex ].tofloat()
+	}
 }
 
 function VMTCallback_HasSightEquipped( ent )
