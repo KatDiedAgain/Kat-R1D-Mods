@@ -32,6 +32,10 @@ isKill <- false
 
 hitmarkerGradientPos <- 0.0
 
+// Last Hit Time: the Time() value when the last bullet hit
+
+lastHitTime = 0
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function main()
@@ -61,6 +65,7 @@ function main()
 function DamageEvent( attacker, params )
 {
 	hitmarkerGradientPos = 0.0
+	lastHitTime = Time()
 	local player = GetLocalViewPlayer()
 	local weapon = player.GetActiveWeapon()
 
@@ -160,6 +165,7 @@ function DamageEvent( attacker, params )
 	printt( "Victim Type:    ", victimType )
 	printt( "Is Kill:        ", isKill )
 	printt( "Hitmarker Type: ", hitmarkerType )
+	printt( "Last Hit Time:  ", lastHitTime )
 	printt( " " )
 	printt( " " )
 	printt( " " )
@@ -169,9 +175,12 @@ function DamageEvent( attacker, params )
 function VMTCallback_HitmarkerSpring( player_but_different )
 {
 	//printt("penis returns, like when Moe kicks Barney out of the bar in The Simpsons and he just appears behind him")
-
+/*
 	local player = GetLocalViewPlayer()
 	local weapon = player.GetActiveWeapon()
+
+	if ( player.GetActiveWeapon().GetClassname() == null )
+		return 1
 
 	if( !("lastHitTime" in weapon.s ) )
 		{
@@ -179,14 +188,18 @@ function VMTCallback_HitmarkerSpring( player_but_different )
 		}
 	weapon.s.lastHitTime = Time()
 
-	local vibrate = sin( Time() )
-	//local vibrate = sin( Time() * FrameTime() * 0.1 )
+	//local vibrate = sin( Time() * 0.1 )
+	local vibrate = sin( Time() * FrameTime() * 0.1 )
 	local decay = ( Time() - weapon.s.lastHitTime ) * FrameTime()
 	decay = GraphCapped(decay, 0.0, 144.0, 1.0, 0.0)
+*/
 
-	printt(vibrate * decay)
+	local vibrate = sin( Time() * FrameTime() * 0.1 )
+	/local decay = ( Time() - lastHitTime ) * FrameTime()
 
-	return vibrate * decay
+	/printt(vibrate * decay)
+
+	return vibrate// * decay
 }
 
 function VMTCallback_HitmarkerColorR( player_but_different )
@@ -221,6 +234,20 @@ function ChangeHitmarkerColor( colIndex )
 
 	return newColor[colIndex]
 }
+
+/*
+function VMTCallback_HideStandardHitmarkerDuringCrit( player_but_different )
+{
+	if (hitmarkerType == 2)
+	{
+		return 0
+	}
+	else
+	{
+		return 1
+	}
+}
+*/
 
 function VMTCallback_HitmarkerFrameChange( player_but_different )
 {

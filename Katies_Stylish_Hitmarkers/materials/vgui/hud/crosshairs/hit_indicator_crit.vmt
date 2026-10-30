@@ -18,7 +18,7 @@ UnlitTwoTexture
 	"$t1rot"					"0.0"
 
 	"$t2offset" 0
-	"$t2scale" 1
+	"$t2scale" "1"
 	"$t2rot" 0
 	"$scroll" "[0 1]"
 

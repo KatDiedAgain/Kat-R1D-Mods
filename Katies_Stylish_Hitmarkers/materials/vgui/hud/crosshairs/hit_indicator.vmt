@@ -1,7 +1,8 @@
-UnlitTwoTexture
+//UnlitTwoTexture
+UnlitGeneric
 {
 	"$basetexture"		"vgui/hud/crosshairs/hit_indicator_style_anim"
-	"$Texture2" 			"dev\noise_post"
+	//"$Texture2" 			"dev\noise_post"
 	"$additive"				"1"
 	"$translucent"		"1"
 	"$vertexcolor"		"1"
@@ -17,10 +18,10 @@ UnlitTwoTexture
 	"$t1scale"				"1.0"
 	"$t1rot"					"0.0"
 
-	"$t2offset" 0
-	"$t2scale" 1
-	"$t2rot" 0
-	"$scroll" "[0 1]"
+	//"$t2offset" 0
+	//"$t2scale" "0.01"
+	//"$t2rot" 0
+	//"$scroll" "[0 1]"
 
 	"$frame"	"0"
 
@@ -28,34 +29,34 @@ UnlitTwoTexture
 	{
 		// Noise
 		// Horizontal movement speed
-		"UniformNoise"
-		{
-			"minVal" 1
-			"maxVal" 1.5
-			"resultVar" "$scroll[0]"
-		}
+		//"UniformNoise"
+		//{
+		//	"minVal" 1
+		//	"maxVal" 1.5
+		//	"resultVar" "$scroll[0]"
+		//}
 		//Vertical movement speed
-		"UniformNoise"
-		{
-			"minVal" 1
-			"maxVal" 1.5
-			"resultVar" "$scroll[1]"
-		}
+		//"UniformNoise"
+		//{
+		//	"minVal" 1
+		//	"maxVal" 1.5
+		//	"resultVar" "$scroll[1]"
+		//}
 		//Move the 2nd texture using horiz and vert speed
-		"TextureTransform"
-		{
-			"translateVar" "$scroll"
-			"scaleVar" "$t2scale"
-			"rotateVar" "$t2rot"
-			"resultvar" "$texture2transform"
-		}
+		//"TextureTransform"
+		//{
+		//	"translateVar" "$scroll"
+		//	"scaleVar" "$t2scale"
+		//	"rotateVar" "$t2rot"
+		//	"resultvar" "$texture2transform"
+		//}
 		//flicker
-		"UniformNoise"
-		{
-			"minVal" 1.0
-			"maxVal" 3.0
-			"resultVar" "$color"
-		}
+		//"UniformNoise"
+		//{
+		//	"minVal" 1.0
+		//	"maxVal" 3.0
+		//	"resultVar" "$color"
+		//}
 
 		// Spring animation
 		ScriptModify
@@ -90,6 +91,13 @@ UnlitTwoTexture
 			scriptFuncName	"VMTCallback_HitmarkerFrameChange"
 			resultVar				"$frame"
 		}
+
+		// Hide this texture during crits bc Rspn did it weird
+		//ScriptModify
+		//{
+		//	scriptFuncName	"VMTCallback_HideStandardHitmarkerDuringCrit"
+		//	resultVar				"$color"
+		//}
 
 		//Sine // a proxy which produces values of a sine wave
 		//{
