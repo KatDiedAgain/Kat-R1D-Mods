@@ -168,7 +168,7 @@ function DamageEvent( attacker, params )
 
 function VMTCallback_HitmarkerSpring( player_but_different )
 {
-	printt("penis returns, like when Moe kicks Barney out of the bar in The Simpsons and he just appears behind him")
+	//printt("penis returns, like when Moe kicks Barney out of the bar in The Simpsons and he just appears behind him")
 
 	local player = GetLocalViewPlayer()
 	local weapon = player.GetActiveWeapon()
@@ -183,6 +183,8 @@ function VMTCallback_HitmarkerSpring( player_but_different )
 	//local vibrate = sin( Time() * FrameTime() * 0.1 )
 	local decay = ( Time() - weapon.s.lastHitTime ) * FrameTime()
 	decay = GraphCapped(decay, 0.0, 144.0, 1.0, 0.0)
+
+	printt(vibrate * decay)
 
 	return vibrate * decay
 }
