@@ -24,10 +24,11 @@ Type these as they're written here. You can change the numbers to fit your prefe
 1. autocvar_set_reticle_offset_amount 1
 2. autocvar_set_global_reticle_scale 1
 3. autocvar_disable_collimation 0
-4. autocvar_set_reticle_scale_hcog 1
-5. autocvar_set_reticle_scale_holo 1
-6. autocvar_set_reticle_scale_aog 1
-7. autocvar_set_reticle_scale_<weapon name> 1
+4. autocvar_disable_transitional_multiplier 0
+5. autocvar_set_reticle_scale_hcog 1
+6. autocvar_set_reticle_scale_holo 1
+7. autocvar_set_reticle_scale_aog 1
+8. autocvar_set_reticle_scale_<weapon name> 1
 
 
 
@@ -37,10 +38,11 @@ There ya go. Alright. Here's what these do:
 1. Changes how much the reticle moves. A value of 1 is stationary on the screen.
 2. Changes the size of all the reticles in the game at the same time. Bigger number = smaller reticle.
 3. When set to 1, disables the function that keeps reticles the same size on your screen no matter how much your gun moves.
-4. How small the HCOG reticle is. Bigger number = smaller reticle.
-5. How small the Holosight reticle is. Bigger number = smaller reticle.
-6. How small the AOG reticle is. Bigger number = smaller reticle.
-7. How small the reticle is for the iron sights of the weapon you specify. Bigger number = smaller reticle.
+4. When set to 1, disables the function that makes your reticle more animated only during the aiming animation.
+5. How small the HCOG reticle is. Bigger number = smaller reticle.
+6. How small the Holosight reticle is. Bigger number = smaller reticle.
+7. How small the AOG reticle is. Bigger number = smaller reticle.
+8. How small the reticle is for the iron sights of the weapon you specify. Bigger number = smaller reticle.
 
 
 
@@ -101,10 +103,16 @@ Here are ALL the details for each and every one, if you need as much info as pos
    Twice as far = twice as small. This also means that, the farther something is from you, the less its size
    will change to your eye.
 
-4. This command is like command #2, but only for the HCOG. Don't like the size of the HCOG, but like all the rest? Change this.
-5. This command is like command #2, but only for the Holosight. Don't like the size of the Holosight, but like all the rest? Change this.
-6. This command is like command #2, but only for the AOG. Don't like the size of the AOG, but like all the rest? Change this.
-7. This command is like command #2, but only for the iron sights' reticle of the weapon you specify. Don't like the size of one weapon's iron sight dot, but like all the rest? Change this.
+4. This command changes whether the mod should add some visual parallax to your reticle during the ADS/un-ADS animations or not.
+   This feature basically makes your reticle move on screen a bit more, but ONLY during those animations.
+   That means that this setting won't affect how much your reticle moves while you're fully aiming. The goal of this
+   setting is to make the reticle look like it's at the right distance during animations while keeping it
+   centered when you're trying to shoot. You won't notice much of a difference if command #1 is set to anything but 1.
+
+5. This command is like command #2, but only for the HCOG. Don't like the size of the HCOG, but like all the rest? Change this.
+6. This command is like command #2, but only for the Holosight. Don't like the size of the Holosight, but like all the rest? Change this.
+7. This command is like command #2, but only for the AOG. Don't like the size of the AOG, but like all the rest? Change this.
+8. This command is like command #2, but only for the iron sights' reticle of the weapon you specify. Don't like the size of one weapon's iron sight dot, but like all the rest? Change this.
    Here are all the weapon names you can use:
 
    r101
@@ -136,6 +144,7 @@ Now, here's a comprehensive list of modifications this addon makes to R1Delta (f
 
 3. Adds new functions which have more fine-tuned data, better algorithms, and a more open and modular structure (future proof for custom weapons). These new functions allow for a number of new features,
    from allowing the user to adjust offset values and scale, to enabling the simulation of collimation of the reticle via motion and zoom compensation.
+   There's also a feature that maps offset magnitude to the ADS fraction so parallax looks greater during the ADS animation without sacrificing precision.
 
 4. Modifies the following sway values for all primary weapons:
    "sway_min_yaw_zoomed"      "-0.03"
@@ -165,9 +174,7 @@ Now, here's a comprehensive list of modifications this addon makes to R1Delta (f
 12. Adds a few extra texture files if anyone wants to use them. The combined Holosight reticle texture has three variants with a faded ring, each at a different intensity,
     and the dot textures used for pistol iron sights have long variants that only fucking work for the P2011 (-_-).
 
-13. Exposes the hitmarker script in hudcrosshair_code.res if anyone wants to fuck with that.
-
-14. Adds a bunch of commands for tinkering with offset and scale values at runtime, and there's functionality for using a cfg file if users want to save their settings.
+13. Adds a bunch of commands for tinkering with offset and scale values at runtime, and there's functionality for using a cfg file if users want to save their settings.
     This also means that commands set in-game will be retained through reboots, though we're not sure how it's doing that without actually creating a cfg file...
     Where the hell is it saving that data??? Beats me.
 
