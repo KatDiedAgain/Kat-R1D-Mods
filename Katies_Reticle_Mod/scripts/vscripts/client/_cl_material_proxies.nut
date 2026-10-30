@@ -950,8 +950,6 @@ function CalculateCustomColor( ent, colIndex )
 {
 	local mapName = GetMapName()
 	local convarName = "autocvar_holosight_corrected_color_" + mapName
-	if ( !ConVarExists( convarName ) )
-		return split( GetConVarString( "autocvar_holosight_corrected_color_mp_fracture" ), "," )[ colIndex ].tofloat()
 
 	if ( ConVarExists( convarName ) ){
 		return split( GetConVarString( convarName ), "," )[ colIndex ].tofloat()
