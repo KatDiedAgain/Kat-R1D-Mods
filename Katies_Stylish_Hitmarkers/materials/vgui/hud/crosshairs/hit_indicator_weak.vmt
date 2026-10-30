@@ -18,7 +18,7 @@ UnlitTwoTexture
 	"$t1rot"					"0.0"
 
 	"$t2offset" 0
-	"$t2scale" 3
+	"$t2scale" 1
 	"$t2rot" 0
 	"$scroll" "[0 1]"
 
@@ -30,15 +30,15 @@ UnlitTwoTexture
 		// Horizontal movement speed
 		"UniformNoise"
 		{
-			"minVal" 0.5
-			"maxVal" 1
+			"minVal" 1
+			"maxVal" 1.5
 			"resultVar" "$scroll[0]"
 		}
 		//Vertical movement speed
 		"UniformNoise"
 		{
-			"minVal" 0.5
-			"maxVal" 1
+			"minVal" 1
+			"maxVal" 1.5
 			"resultVar" "$scroll[1]"
 		}
 		//Move the 2nd texture using horiz and vert speed
@@ -52,7 +52,7 @@ UnlitTwoTexture
 		//flicker
 		"UniformNoise"
 		{
-			"minVal" 0.8
+			"minVal" 1
 			"maxVal" 3.0
 			"resultVar" "$color"
 		}
