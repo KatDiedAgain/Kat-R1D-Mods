@@ -1,19 +1,6 @@
-//"Basic"
-//{
-//	"$basetexture" "vgui/hud/crosshairs/hit_indicator_crit_style"
-//	"$additive" "1"
-//	"$translucent" "1"
-//	//"$vertexcolor" "1"
-//	"$vertexalpha" "1"
-//	"$ignorez"     "1"
-//
-//	// Additional modified data
-//	"color" "[0 0 1]"
-//}
-
 UnlitTwoTexture
 {
-	"$basetexture"		"vgui/hud/crosshairs/hit_indicator_crit_style_glow"
+	"$basetexture"		"vgui/hud/crosshairs/hit_indicator_crit_style_anim"
 	"$Texture2" 			"dev\noise_post"
 	"$additive"				"1"
 	"$translucent"		"1"
@@ -23,8 +10,8 @@ UnlitTwoTexture
 	"$allowoverbright" "1"
 
 	"$color"						"[1 1 1]"
-	"$color2"					"[1 0.25 0.25]"
-	"$clroffsetzero"	"[1 0.25 0.25]"
+	//"$color2"					"[1 0.25 0.25]"
+	//"$clroffsetzero"	"[1 0.25 0.25]"
 
 	"$t1translate"		"[0.0 0.0]"
 	"$t1scale"				"1.0"
@@ -34,6 +21,8 @@ UnlitTwoTexture
 	"$t2scale" 3
 	"$t2rot" 0
 	"$scroll" "[0 1]"
+
+	"$frame"	"0"
 
 	"Proxies"
 	{
@@ -76,24 +65,31 @@ UnlitTwoTexture
     }
 
 		// Color change and animation
+		//ScriptModify
+  	//{
+    //  scriptFuncName	"VMTCallback_HitmarkerColorR"
+    //  resultVar   "$color2[0]"
+		//	//resultVar   "$clroffsetzero[0]"
+    //}
+		//ScriptModify
+  	//{
+    //  scriptFuncName	"VMTCallback_HitmarkerColorG"
+    //  resultVar   "$color2[1]"
+		//	//resultVar   "$clroffsetzero[1]"
+    //}
+		//ScriptModify
+  	//{
+    //  scriptFuncName	"VMTCallback_HitmarkerColorB"
+    //  resultVar   "$color2[2]"
+		//	//resultVar   "$clroffsetzero[2]"
+    //}
+
+		// Change frame for killshot
 		ScriptModify
-  	{
-      scriptFuncName	"VMTCallback_HitmarkerColorR"
-      resultVar   "$color2[0]"
-			//resultVar   "$clroffsetzero[0]"
-    }
-		ScriptModify
-  	{
-      scriptFuncName	"VMTCallback_HitmarkerColorG"
-      resultVar   "$color2[1]"
-			//resultVar   "$clroffsetzero[1]"
-    }
-		ScriptModify
-  	{
-      scriptFuncName	"VMTCallback_HitmarkerColorB"
-      resultVar   "$color2[2]"
-			//resultVar   "$clroffsetzero[2]"
-    }
+		{
+			scriptFuncName	"VMTCallback_HitmarkerFrameChange"
+			resultVar				"$frame"
+		}
 
 		//Sine // a proxy which produces values of a sine wave
 		//{

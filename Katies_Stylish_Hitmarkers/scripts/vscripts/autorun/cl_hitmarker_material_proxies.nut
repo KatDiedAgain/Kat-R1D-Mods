@@ -222,4 +222,16 @@ function ChangeHitmarkerColor( colIndex )
 	return newColor[colIndex]
 }
 
+function VMTCallback_HitmarkerFrameChange( player_but_different )
+{
+	if ( isKill )
+	{
+		return 1
+	}
+	else
+	{
+		return 0
+	}
+}
+
 main()
