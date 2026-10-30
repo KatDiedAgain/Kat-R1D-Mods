@@ -195,9 +195,9 @@ function VMTCallback_HitmarkerSpring( player_but_different )
 */
 
 	local vibrate = sin( Time() * FrameTime() * 0.1 )
-	/local decay = ( Time() - lastHitTime ) * FrameTime()
+	//local decay = ( Time() - lastHitTime ) * FrameTime()
 
-	/printt(vibrate * decay)
+	//printt(vibrate * decay)
 
 	return vibrate// * decay
 }
