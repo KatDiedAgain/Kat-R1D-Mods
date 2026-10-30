@@ -30,7 +30,7 @@ isKill <- false
 //
 // 0.0 - 1.0
 
-hitmarkerGradientPos <- 0.0
+hitmarkerGradientPos <- 1.0
 
 // Last Hit Time: the Time() value when the last bullet hit
 
@@ -64,27 +64,10 @@ function main()
 
 function DamageEvent( attacker, params )
 {
-	hitmarkerGradientPos = 0.0
+	hitmarkerGradientPos = 1.0
 	lastHitTime = Time()
 	local player = GetLocalViewPlayer()
 	local weapon = player.GetActiveWeapon()
-
-/*
-	if( !("killType" in player.s ) )
-		{
-			 player.s.killType <- -1
-		}
-
-	if( !("hitmarkerType" in player.s ) )
-		{
-			 player.s.hitmarkerType <- 0
-		}
-
-	if( !("hitmarkerGradientPos" in player.s ) )
-		{
-			 player.s.hitmarkerGradientPos <- 0
-		}
-*/
 
   if ( params.playKillSound )
 	{
@@ -174,32 +157,17 @@ function DamageEvent( attacker, params )
 
 function VMTCallback_HitmarkerSpring( player_but_different )
 {
-	//printt("penis returns, like when Moe kicks Barney out of the bar in The Simpsons and he just appears behind him")
-/*
-	local player = GetLocalViewPlayer()
-	local weapon = player.GetActiveWeapon()
+	hitmarkerGradientPos -= 0.02
+	local vibrate = sin( Time() * 64 ) * 0.2 + 1.2
+	local decay = hitmarkerGradientPos
+	decay = clamp ( decay, 0.0, 1.0 )
 
-	if ( player.GetActiveWeapon().GetClassname() == null )
-		return 1
+	local springVal = (vibrate * decay) + 1
 
-	if( !("lastHitTime" in weapon.s ) )
-		{
-		   weapon.s.lastHitTime <- 0
-		}
-	weapon.s.lastHitTime = Time()
+	printt("Spring Val: ", springVal)
+	printt("Decay:      ", decay)
 
-	//local vibrate = sin( Time() * 0.1 )
-	local vibrate = sin( Time() * FrameTime() * 0.1 )
-	local decay = ( Time() - weapon.s.lastHitTime ) * FrameTime()
-	decay = GraphCapped(decay, 0.0, 144.0, 1.0, 0.0)
-*/
-
-	local vibrate = sin( Time() * FrameTime() * 0.1 )
-	//local decay = ( Time() - lastHitTime ) * FrameTime()
-
-	//printt(vibrate * decay)
-
-	return vibrate// * decay
+	return springVal
 }
 
 function VMTCallback_HitmarkerColorR( player_but_different )

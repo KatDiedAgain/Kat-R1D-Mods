@@ -45,8 +45,15 @@ Resource/UI/HudCrosshair.res
 		//drawcolor			"255 64 64 255"
 		drawcolor			"255 255 255 255" // trying to unify the color
 
+		// Spring animation
+		//ScriptModify
+  	//{
+    //  scriptFuncName	VMTCallback_HitmarkerSpring
+    //  resultVar   scaleImage
+    //}
+
 		xpos				0
-		ypos				0
+		ypos				300
 		zpos				203
 	}
 
